@@ -20,7 +20,7 @@ public class PaymentSchedulerService {
     private DpsService dpsService;
 
 
-   // @Scheduled(fixedRate = 5000)     // প্রতি ১ মিনিটে চলবে
+    //@Scheduled(fixedRate = 20000)     // প্রতি ১ মিনিটে চলবে
       @Scheduled(cron = "0 0 0 * * ?")   //Runs every day at 12:00 AM
     public void autoProcessDpsPayments() {
         System.out.println(" Running DPS Auto Payment Scheduler at " + new Date());

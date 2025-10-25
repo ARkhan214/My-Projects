@@ -217,10 +217,10 @@ public class DpsService {
 
         //===================================================next Debit Date=======Start============
         // নতুন nextDebitDate সেট করা
-        //1 ঘণ্টা পরের জন্য
+        //30 দিন পরের জন্য
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date()); // বর্তমান সময়
-        cal.add(Calendar.DAY_OF_MONTH, 1); // 1 দিন পরের জন্য
+        cal.add(Calendar.DAY_OF_MONTH, 30); // 30 দিন পরের জন্য
         dpsAccount.setNextDebitDate(cal.getTime());
 
         //        cal.add(Calendar.DAY_OF_MONTH, 30);    // ৩০ দিন  পরের জন্য
