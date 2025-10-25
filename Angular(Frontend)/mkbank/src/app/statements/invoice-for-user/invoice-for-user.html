@@ -1,0 +1,60 @@
+<div class="text-center my-3">
+  <button class="btn btn-primary me-3 mr-3" [disabled]="currentIndex <= 0" (click)="showPrevious()">Previous Transaction</button>
+  <button class="btn btn-secondary ml-3" [disabled]="currentIndex >= transactions.length - 1" (click)="showNext()">Next Transaction</button>
+</div>
+
+<div class="invoice-container">
+  <h2 class="text-center">MK Bank PLC.</h2>
+  <h4 class="text-center mb-4">Statement</h4>
+
+  <div *ngIf="currentTransaction" class="customer-details mb-4 d-flex justify-content-between">
+    <div class="customer-left">
+      <p><strong>Customer ID:</strong> {{ currentTransaction.account.id }}</p>
+      <p><strong>Name:</strong> {{ currentTransaction.account.name }}</p>
+      <p><strong>Address:</strong> {{ currentTransaction.account.address }}</p>
+    </div>
+    <div class="customer-right">
+      <p><strong>Account Type:</strong> {{ currentTransaction.account.accountType }}</p>
+      <p><strong>Phone:</strong> {{ currentTransaction.account.phoneNumber }}</p>
+      <p><strong>Opening Date:</strong> {{ currentTransaction.account.accountOpeningDate | date:'shortDate' }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="!currentTransaction" class="alert alert-info text-center">
+    No transaction available.
+  </div>
+
+  <div *ngIf="currentTransaction" class="table-responsive">
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Date</th>
+          <th>Transaction ID</th>
+          <th>Type</th>
+          <th>Transaction Type</th>
+          <th>Amount</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ currentTransaction.transactionTime | date:'short' }}</td>
+          <td>{{ currentTransaction.id }}</td>
+          <td [ngClass]="{'debit': currentTransaction.type==='DEBIT','credit':currentTransaction.type==='CREDIT'}">{{ currentTransaction.type }}</td>
+          <td>{{ currentTransaction.transactionType }}</td>
+          <td class="amount">{{ currentTransaction.amount | number:'1.2-2' }}</td>
+          <td>{{ currentTransaction.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-center mt-4">
+    <button class="btn btn-primary me-3 mr-3" (click)="exportHTMLPDF()">Download UI-style PDF</button>
+    <button class="btn btn-success ml-3" (click)="exportAutoTablePDF()">Download Table PDF</button>
+  </div>
+
+  <div class="footer-note mt-3 text-center">
+    This invoice has been generated from MK Bank iBanking system. No signature required.
+  </div>
+</div>

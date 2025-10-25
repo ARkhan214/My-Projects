@@ -1,0 +1,60 @@
+<p style="font-weight:bold; color:#0d6efd; text-align:center; margin-bottom:15px;">view-all-loans works!</p>
+
+<div class="loan-container" style="margin:20px auto; padding:20px; max-width:100%; font-family:Arial, sans-serif;">
+
+  <h2 class="text-center fw-bold mb-4" style="color:#0d6efd; border-bottom:2px solid #0d6efd; padding-bottom:8px;">My Loans</h2>
+
+  <p *ngIf="errorMessage" class="alert alert-danger text-center">{{ errorMessage }}</p>
+
+  <div class="table-responsive">
+    <table *ngIf="loans.length > 0; else noLoans" class="table table-striped table-hover align-middle text-center" style="border:1px solid #dee2e6;">
+      <thead class="table-dark sticky-top">
+        <tr>
+          <th>Loan ID</th>
+          <th>Loan Amount</th>
+          <th>Interest Rate</th>
+          <th>EMI Amount</th>
+          <th>Remaining Amount</th>
+          <th>Already Paid Amount</th>
+          <th>Loan Status</th>
+          <th>Loan Type</th>
+          <th>Loan Start Date</th>
+          <th>Loan Complete Date</th>
+          <th>Account ID</th>
+          <th>Account Name</th>
+          <th>Type</th>
+          <th>NID</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Current Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let loan of loans">
+          <td>{{ loan.id }}</td>
+          <td>{{ loan.loanAmount }}</td>
+          <td>{{ loan.interestRate }}</td>
+          <td>{{ loan.emiAmount }}</td>
+          <td>{{ loan.remainingAmount }}</td>
+          <td>{{ loan.totalAlreadyPaidAmount }}</td>
+          <td>{{ loan.status}}</td>
+          <td>{{ loan.loanType }}</td>
+          <td>{{ loan.loanStartDate }}</td>
+          <td>{{ loan.loanMaturityDate }}</td>
+          <td>{{ loan.account.id }}</td>
+          <td>{{ loan.account.name }}</td>
+          <td>{{ loan.account.accountType }}</td>
+          <td>{{ loan.account.nid }}</td>
+          <td>{{ loan.account.phoneNumber }}</td>
+          <td>{{ loan.account.address }}</td>
+          <td>{{ loan.account.balance }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noLoans>
+    <p class="alert alert-warning text-center">No loans found.</p>
+  </ng-template>
+
+</div>

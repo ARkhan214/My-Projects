@@ -1,0 +1,124 @@
+<div class="container mt-4">
+
+    <!-- Account Information -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Account Information</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 mb-2">
+                    <label><strong>Account ID:</strong></label>
+                    <input class="form-control" [value]="accountId" readonly>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <label><strong>Account Name:</strong></label>
+                    <input class="form-control" [value]="accountName" readonly>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <label><strong>Balance:</strong></label>
+                    <input class="form-control" [value]="balance" readonly>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <label><strong>Account Type:</strong></label>
+                    <input class="form-control" [value]="accountType" readonly>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <label><strong>NID:</strong></label>
+                    <input class="form-control" [value]="nid" readonly>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <label><strong>Phone:</strong></label>
+                    <input class="form-control" [value]="phoneNumber" readonly>
+                </div>
+                <div class="col-md-12 mb-2">
+                    <label><strong>Address:</strong></label>
+                    <input class="form-control" [value]="address" readonly>
+                </div>
+
+                <!-- New DPS Form -->
+                <form (ngSubmit)="createDps()" class="w-100 d-flex flex-wrap">
+                    <div class="col-md-6 mb-2">
+                        <div class="form-group mb-2">
+                            <label>Monthly Amount</label>
+                            <input type="number" [(ngModel)]="monthlyAmount" name="monthlyAmount" class="form-control"
+                                required (input)="calculatePreview()">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-2">
+                        <div class="form-group mb-2">
+                            <label>Duration (Months)</label>
+                            <input type="number" [(ngModel)]="termMonths" name="termMonths" class="form-control"
+                                required (input)="calculatePreview()">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-2">
+                        <div class="form-group mb-2 p-2 border rounded bg-light">
+                            <label><strong>Interest Rate</strong></label>
+                            <input type="text" class="form-control" [value]="calculatedInterestRate + '%'" readonly>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-2">
+                        <div class="form-group mb-2 p-2 border rounded bg-light">
+                            <label><strong>Estimated Maturity Amount</strong></label>
+                            <input type="text" class="form-control" [value]="estimatedMaturityAmount | number:'1.2-2'"
+                                readonly>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-success mt-2">Create DPS</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- My DPS List -->
+    <!-- <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">My DPS Accounts</h5>
+        </div>
+        <div class="card-body" *ngIf="dpsList.length > 0; else noDps">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Account Name</th>
+                        <th>Monthly Amount</th>
+                        <th>Term (Months)</th>
+                        <th>Maturity Amount</th>
+                        <th>Status</th>
+                        <th>Months Paid</th>
+                        <th>Next Debit Date</th>
+                        <th>Total Deposited</th>
+                        <th>Interest Rate</th>                    
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dps of dpsList">
+                        <td>{{ dps.id }}</td>
+                        <td>{{ dps.accountName }}</td>
+                        <td>{{ dps.monthlyAmount }}</td>
+                        <td>{{ dps.termMonths }}</td>
+                       <td>{{ dps.maturityAmount | number:'1.2-2' }}</td>
+                        <td>{{ dps.status }}</td>
+                        <td>{{ dps.monthsPaid }}</td>
+                        <td>{{dps.nextDebitDate}}</td>
+                        <td>{{ dps.totalDeposited }}</td>
+                        <td>{{ dps.annualInterestRate }}%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ng-template #noDps>
+            <p class="text-muted">No DPS accounts found.</p>
+        </ng-template>
+    </div> -->
+
+</div>

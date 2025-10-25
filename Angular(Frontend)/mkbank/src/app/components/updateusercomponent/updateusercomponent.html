@@ -1,0 +1,71 @@
+<p>updateusercomponent works!</p>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<div class="container my-3">
+    <div class="bg-success text-center">
+       
+        <h1 class="jumborton"><i class="fa fa-users me-1"></i> Update User</h1>
+    </div>
+    <!--    start form-->
+    <form (ngSubmit)="updateUser()">
+        <input type="hidden" name="action" value="add">
+        
+        <div class="row">
+            <div class="col-md-6">
+                <label for="exampleInputEmail1" class="form-label">Name</label>
+                <input type="text" class="form-control"  name="name"  [(ngModel)]="user.name">
+            </div>
+
+             
+            <div class="col-md-6">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="text" class="form-control" name="email"  [(ngModel)]="user.email">
+            </div>
+
+            <div class="col-md-6">
+                <label for="exampleInputEmail1" class="form-label">Password</label>
+                <input type="password" class="form-control"  name="password" placeholder="" [(ngModel)]="user.password">
+            </div>       
+            <div class="col-md-6">
+                <label for="exampleInputEmail1" class="form-label">Photo Url</label>
+                <input type="text" class="form-control"  name="photo" placeholder="" [(ngModel)]="user.photo">
+            </div>       
+            
+             <!-- <div class="col-md-6 " formGroupName="location">
+                <div class="invalid-feedback">Please select a location.</div>
+                <label for="location" class="form-label">Location:</label>
+                <select id="location" formControlName="name" class="form-select" required>
+                    <option *ngFor="let loc of locations" [ngValue]="loc.name">{{loc.name}}</option>
+                </select>
+
+            </div> -->
+
+        
+        </div>
+
+
+           
+
+       
+
+
+        <div class="row mt-3 text-center">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success text-center">Save</button>
+
+            </div>
+
+            <div class="col-md-6">
+                <button type="reset" class="btn btn-danger text-center" >Reset</button>
+
+            </div>
+        </div>
+    </form>
+
+    <!--end form    -->
+</div>
+
+
+

@@ -1,0 +1,83 @@
+<div class="container my-5">
+  <div class="card shadow-lg border-0 mx-auto" style="max-width: 720px; border-radius:16px;">
+    <div class="card-body p-5">
+
+      <!-- Title -->
+      <h2 class="card-title mb-4 text-center fw-bold" style="font-size:2rem; color:#d63384; text-shadow:1px 1px 2px rgba(0,0,0,0.1);">
+        📱 Mobile Reacherge
+      </h2>
+      <hr class="mb-4" style="border-color:#d63384; opacity:0.3;">
+
+      <form [formGroup]="mobileBillForm" (ngSubmit)="onSubmit()">
+
+        <!-- Mobile Operator -->
+        <div class="mb-4">
+          <label for="companyName" class="form-label fw-semibold" style="font-size:1.2rem; color:#d63384;">
+            Mobile Operator
+          </label>
+          <select id="companyName" formControlName="companyName"
+                  class="form-select form-control-lg rounded-pill"
+                  style="font-size:1.15rem; padding:0.75rem 1rem; height:50px; width: 600px;">
+            <option value="" disabled selected>-- Select Mobile Operator --</option>
+            <option value="Grameenphone">Grameenphone</option>
+            <option value="Skito">Skito</option>
+            <option value="Airtle">Airtle</option>
+            <option value="Robi">Robi</option>
+            <option value="Banglalink">Banglalink</option>
+            <option value="Teletalk">Teletalk</option>
+          </select>
+          <div class="text-danger mt-1 small"
+               *ngIf="mobileBillForm.get('companyName')?.touched && mobileBillForm.get('companyName')?.hasError('required')">
+            Company name is required.
+          </div>
+        </div>
+
+        <!-- Account / Billing ID -->
+        <div class="mb-4">
+          <label for="accountHolderBillingId" class="form-label fw-semibold" style="font-size:1.2rem; color:#d63384;">
+            Account / Billing ID
+          </label>
+          <input id="accountHolderBillingId" type="text" formControlName="accountHolderBillingId"
+                 class="form-control form-control-lg rounded-pill"
+                 placeholder="Enter mobile number / billing ID" style="height:50px; padding:0.75rem 1rem; font-size:1.15rem;" />
+          <div class="text-danger mt-1 small"
+               *ngIf="mobileBillForm.get('accountHolderBillingId')?.touched && mobileBillForm.get('accountHolderBillingId')?.hasError('required')">
+            Billing ID is required.
+          </div>
+        </div>
+
+        <!-- Amount -->
+        <div class="mb-4">
+          <label for="amount" class="form-label fw-semibold" style="font-size:1.2rem; color:#d63384;">
+            Amount
+          </label>
+          <input id="amount" type="number" formControlName="amount" min="1" step="0.01"
+                 class="form-control form-control-lg rounded-pill"
+                 placeholder="Enter amount" style="height:50px; padding:0.75rem 1rem; font-size:1.15rem;" />
+          <div class="text-danger mt-1 small" *ngIf="mobileBillForm.get('amount')?.touched">
+            <span *ngIf="mobileBillForm.get('amount')?.hasError('required')">Amount is required.</span>
+            <span *ngIf="mobileBillForm.get('amount')?.hasError('min')">Amount must be at least 1.</span>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-between align-items-center mt-5">
+          <button type="submit" [disabled]="mobileBillForm.invalid || !token"
+                  class="btn btn-danger btn-lg px-5 rounded-pill shadow-sm">
+            Reacherge
+          </button>
+          <button type="button" (click)="resetForm()"
+                  class="btn btn-outline-secondary btn-lg px-4 rounded-pill">
+            Reset
+          </button>
+        </div>
+
+        <!-- Not logged in note -->
+        <div class="alert alert-warning mt-4 mb-0 rounded-pill text-center py-2 small" *ngIf="!token">
+          ⚠️ You are not logged in. Please login to make a payment.
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

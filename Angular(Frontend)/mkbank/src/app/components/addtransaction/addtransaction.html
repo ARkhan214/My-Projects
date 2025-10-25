@@ -1,0 +1,91 @@
+<div class="transaction-container p-4 border rounded shadow-sm bg-white">
+
+  <h2 class="mb-4">New Transaction</h2>
+
+  <!-- Transaction Form -->
+  <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+
+    <!-- Transaction Type -->
+    <div class="mb-3">
+      <label for="type" class="form-label">Transaction Type</label>
+      <select id="type" class="form-select" formControlName="type">
+        <option value="">-- Select Type --</option>
+        <option [value]="transactionType.TRANSFER">Transfer</option>
+      </select>
+    </div>
+
+    <!-- Receiver ID (only for transfer) -->
+    <div class="mb-3" *ngIf="transactionForm.get('type')?.value === transactionType.TRANSFER">
+      <label for="receiverId" class="form-label">Receiver Account ID</label>
+      <input type="number" id="receiverId" class="form-control" formControlName="receiverId"
+        placeholder="Enter receiver account ID">
+    </div>
+
+    <!-- Amount -->
+    <div class="mb-3">
+      <label for="amount" class="form-label">Amount</label>
+      <input type="number" id="amount" class="form-control" formControlName="amount" placeholder="Enter amount">
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea id="description" class="form-control" rows="2" formControlName="description"
+        placeholder="Optional note..."></textarea>
+    </div>
+
+
+
+    <!-- Receiver Account Info -->
+    <div *ngIf="transactionForm.get('type')?.value === transactionType.TRANSFER">
+      <div *ngIf="loadingReceiver" class="alert alert-info">
+        Loading receiver account...
+      </div>
+
+      <div *ngIf="receiverAccount" class="card mt-3 shadow-sm p-3">
+        <h5 class="card-title text-center mb-3">Receiver Account Details</h5>
+
+        <div class="d-flex flex-column align-items-center">
+          <!-- Photo -->
+          <img *ngIf="receiverAccount.photo" [src]="'http://localhost:8085/images/account/' + receiverAccount.photo"
+            alt="Photo" class="rounded-circle border shadow-sm mb-3"
+            style="width: 120px; height: 120px; object-fit: cover;">
+
+          <!-- Read-only Form Fields -->
+          <div class="row w-100">
+            <div class="col-md-6 mb-2">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control" [value]="receiverAccount.name" readonly>
+            </div>
+            <div class="col-md-6 mb-2">
+              <label class="form-label">Account Type</label>
+              <input type="text" class="form-control" [value]="receiverAccount.accountType" readonly>
+            </div>
+            <div class="col-md-6 mb-2">
+              <label class="form-label">Status</label>
+              <input type="text" class="form-control"
+                [value]="receiverAccount.accountActiveStatus ? 'Active' : 'Closed'" readonly>
+            </div>
+
+            <div class="col-md-6 mb-2">
+              <label class="form-label">Phone</label>
+              <input type="text" class="form-control" [value]="receiverAccount.phoneNumber" readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit & Reset Buttons -->
+    <div class="d-flex justify-content-between gap-2 mt-3">
+      <button type="submit" class="btn btn-primary w-50 mr-3" [disabled]="transactionForm.invalid">
+        Submit Transaction
+      </button>
+      <button type="reset" class="btn btn-secondary w-50 ml-3" (click)="resetForm()">
+        Reset
+      </button>
+    </div>
+
+  </form>
+</div>

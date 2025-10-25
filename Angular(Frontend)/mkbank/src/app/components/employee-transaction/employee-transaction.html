@@ -1,0 +1,81 @@
+<div class="transaction-form container mt-4">
+
+  <div class="card shadow-lg border-0 rounded-4">
+    <div class="card-body p-4">
+
+      <h3 class="text-center text-primary fw-bold mb-4">
+        Transfer Form
+      </h3>
+
+      <!-- Success & Error Messages -->
+      <div *ngIf="successMessage" class="alert alert-success text-center rounded-pill">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger text-center rounded-pill">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Transaction Form -->
+      <form (ngSubmit)="transaction.type === transactionType.TRANSFER ? transfer() : fake()" class="row g-3">
+
+        <!-- Account ID / Sender ID -->
+        <div *ngIf="transaction.type !== transactionType.TRANSFER" class="col-md-6">
+          <label class="form-label fw-semibold">Account ID</label>
+          <input type="number" [(ngModel)]="accountId" name="accountId" class="form-control rounded-3" required>
+        </div>
+
+        <div *ngIf="transaction.type === transactionType.TRANSFER" class="col-md-6">
+          <label class="form-label fw-semibold">Sender ID</label>
+          <input type="number" [(ngModel)]="senderId" name="senderId" class="form-control rounded-3" required>
+        </div>
+
+        <!-- Receiver ID (Only for Transfer) -->
+        <!-- <div *ngIf="transaction.type === transactionType.TRANSFER" class="col-md-6">
+          <label class="form-label fw-semibold">Receiver ID</label>
+          <input type="number" [(ngModel)]="receiverId" name="receiverId" class="form-control rounded-3" required>
+        </div> -->
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Receiver ID</label>
+          <input type="number" [(ngModel)]="receiverId" name="receiverId" class="form-control rounded-3" required>
+        </div>
+
+        <!-- Amount -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Amount</label>
+          <input type="number" [(ngModel)]="transaction.amount" name="amount" class="form-control rounded-3" required>
+        </div>
+
+        <!-- Description -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Description</label>
+          <input type="text" [(ngModel)]="transaction.description" name="description" class="form-control rounded-3">
+        </div>
+
+        <!-- Transaction Type -->
+        <!-- <div class="col-md-6 mt-4">
+          <label class="form-label fw-semibold mr-3">Type</label>
+          <select [(ngModel)]="transaction.type" name="type" class="form-select rounded-3" required>
+            <option [ngValue]="transactionType.TRANSFER">Transfer</option>
+          </select>
+        </div> -->
+        <!-- Transaction Type (Hidden) -->
+        <input type="hidden" [(ngModel)]="transaction.type" name="type">
+
+        <!-- Submit Button -->
+        <div class="col-12 text-center mt-3">
+          <button type="submit" class="btn btn-primary px-4 py-2 mr-2 rounded-pill shadow">
+            {{ transaction.type === transactionType.TRANSFER ? 'Transfer' : 'Transfer' }}
+          </button>
+
+          <!-- Reset Button -->
+          <button type="button" class="btn btn-secondary px-4 py-2 rounded-pill shadow" (click)="resetForm()">
+            Reset
+          </button>
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

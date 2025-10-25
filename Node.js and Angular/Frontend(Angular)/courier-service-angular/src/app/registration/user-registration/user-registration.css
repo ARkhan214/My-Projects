@@ -1,0 +1,94 @@
+.consumer-profile {
+  max-width: 1250px;
+  margin: 160px auto;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  background: #ffffff;
+  font-family: "Poppins", sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #587b02;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 6px;
+  font-weight: 800;
+  color: #333;
+}
+
+label span {
+  color: red;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"] {
+  padding: 10px;
+  border: 1px solid #353434;
+  border-radius: 6px;
+  outline: none;
+  font-size: 15px;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: #007bff;
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  position: relative;
+  padding: 10px 25px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+  min-width: 120px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* ✅ Spinner styles */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 600px) {
+  .consumer-profile {
+    padding: 15px;
+    margin: 20px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+}

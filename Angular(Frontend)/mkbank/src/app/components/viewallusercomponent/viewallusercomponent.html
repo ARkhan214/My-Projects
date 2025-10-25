@@ -1,0 +1,79 @@
+<p class="text-primary fw-semibold mb-3">View All Users</p>
+
+<div class="container my-4 p-4 bg-light border border-success rounded shadow-sm">
+
+  <h1 class="text-white text-center py-3 rounded"
+      style="background: linear-gradient(to right, #0072ff, #00c6ff); font-weight: bold;">
+    <i class="fa fa-users me-2"></i>All User Details
+  </h1>
+
+  <!-- 🔍 Search Inputs -->
+  <div class="row mb-3 g-2">
+    <div class="col-md-4">
+      <input
+        type="text"
+        [(ngModel)]="searchById"
+        placeholder="Search by ID"
+        class="form-control"
+        (input)="filterById()"
+        (keydown.enter)="filterById()"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <input
+        type="text"
+        [(ngModel)]="searchByEmail"
+        placeholder="Search by Email"
+        class="form-control"
+        (input)="filterByEmail()"
+        (keydown.enter)="filterByEmail()"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <input
+        type="text"
+        [(ngModel)]="searchByPhone"
+        placeholder="Search by Phone"
+        class="form-control"
+        (input)="filterByPhone()"
+        (keydown.enter)="filterByPhone()"
+      />
+    </div>
+  </div>
+
+  <!-- Users Table -->
+  <table class="table table-striped table-hover table-bordered text-center align-middle shadow-sm mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Photo</th>
+        <!-- <th>Action</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of filteredUser">
+        <td>{{ u.id }}</td>
+        <td class="text-info fw-semibold">{{ u.name }}</td>
+        <td><i class="fa fa-envelope me-1 text-muted"></i>{{ u.email }}</td>
+        <td><i class="fa fa-phone me-1 text-muted"></i>{{ u.phoneNumber }}</td>
+        <td>
+          <img [src]="'http://localhost:8085/images/user/'+u.photo" alt="User photo"
+               style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">
+        </td>
+        <!-- <td>
+          <button class="btn btn-outline-success btn-sm me-2" (click)="getUserById(u.id!)">
+            <i class="fa fa-edit"></i> Edit
+          </button>
+          <button class="btn btn-outline-danger btn-sm" (click)="deleteUser(u.id!)">
+            <i class="fa fa-trash"></i> Delete
+          </button>
+        </td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>

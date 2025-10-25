@@ -1,0 +1,89 @@
+<div class="container mt-4">
+  <h3>Find Account Statement</h3>
+
+  <!-- ✅ Input Section (only for manual search) -->
+  <div class="mb-3" *ngIf="!isLoggedInUser">
+    <label>Account ID:</label>
+    <input
+      type="text"
+      [(ngModel)]="accountId"
+      class="form-control"
+      placeholder="Enter Account ID"
+    />
+    <button class="btn btn-primary mt-2" (click)="findStatement()">Find</button>
+  </div>
+
+  <!-- ✅ Date Filter Section (only visible when accountId is available) -->
+  <div class="row mb-3 mt-3" *ngIf="accountId">
+    <div class="col-md-5">
+      <label for="startDate">From Date:</label>
+      <input
+        type="date"
+        [(ngModel)]="startDate"
+        class="form-control"
+        id="startDate"
+      />
+    </div>
+    <div class="col-md-5">
+      <label for="endDate">To Date:</label>
+      <input
+        type="date"
+        [(ngModel)]="endDate"
+        class="form-control"
+        id="endDate"
+      />
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+      <button class="btn btn-secondary w-100" (click)="findStatement()">
+        Filter
+      </button>
+    </div>
+  </div>
+
+  <!-- ✅ Loading & Error -->
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
+
+  <!-- ✅ Printable Section -->
+  <div id="statementTable" class="printable-section mt-4" *ngIf="transactions.length > 0">
+    <div style="text-align: center;">
+      <h2>Account Transaction Statement</h2>
+      <p><strong>Account Number:</strong> {{ accountId }}</p>
+      <p><strong>Date:</strong> {{ today | date: 'fullDate' }}</p>
+      <p *ngIf="startDate && endDate">
+        <strong>Showing Transactions from</strong> {{ startDate }} <strong>to</strong> {{ endDate }}
+      </p>
+    </div>
+
+    <table class="table table-bordered mt-3">
+      <thead class="thead-dark">
+        <tr>
+          <th>Transaction Time</th>
+          <th>AC Number</th>
+          <th>Receiver Account</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of transactionsWithBalance">
+          <td>{{ t.transactionTime | date: 'short' }}</td>
+          <td>{{ t.accountId }}</td>
+          <td>{{ t.type === 'DEPOSIT' || t.type === 'WITHDRAW' ? 'Self' : t.receiverAccountId }}</td>
+          <td>{{ t.type }}</td>
+          <td>{{ t.description || '-' }}</td>
+          <td>৳{{ t.amount }}</td>
+          <td>৳{{ t.balance }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+  </div>
+  <!-- ✅ Print Button -->
+    <button class="btn btn-success mt-3" (click)="printStatement()">
+      Print Statement as PDF
+    </button>
+</div>

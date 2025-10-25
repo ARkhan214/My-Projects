@@ -1,0 +1,77 @@
+<h4 class="text-center fw-bold mb-5" style="font-size:2.5rem; color:#0d1a2b;">
+  🏦 Account Holder Profile
+</h4>
+
+<div *ngIf="account && account.role === 'USER'; else noAccount" class="container">
+
+  <!-- Top Profile Header Section -->
+  <div class="row align-items-center bg-white rounded-4 shadow-sm p-4 mb-4"
+       style="border-left: 6px solid #0d6efd;">
+
+    <div class="col-md-2 text-center">
+      <img [src]="'http://localhost:8085/images/account/' + account.photo" alt="Profile Image"
+           class="rounded-circle shadow"
+           style="height:120px; width:120px; object-fit:cover; border:3px solid #0d6efd;">
+    </div>
+
+    <div class="col-md-7">
+      <h4 class="fw-bold text-dark mb-1">{{ account.name }}</h4>
+      <p class="mb-1 text-muted">Account ID: <strong>{{ account.id }}</strong></p>
+      <span class="badge rounded-pill"
+            [ngStyle]="{
+              'background-color': account.accountActiveStatus ? '#d1e7dd' : '#f8d7da',
+              'color': account.accountActiveStatus ? '#0f5132' : '#842029',
+              'font-size': '0.9rem',
+              'padding': '0.45rem 0.9rem'
+            }">
+        {{ account.accountActiveStatus ? 'Active ✅' : 'Inactive ❌' }}
+      </span>
+    </div>
+
+    <div class="col-md-3 text-end">
+      <div class="fw-semibold text-success" style="font-size:1.2rem;">
+        💰 Balance:
+      </div>
+      <div class="fw-bold text-dark" style="font-size:1.4rem;">
+        {{ account.balance | currency:'BDT ':'symbol':'1.2-2' }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Sections -->
+  <div class="row">
+    <div class="col-12 mb-3" *ngFor="let section of profileSections">
+      <div class="bg-light rounded-3 overflow-hidden shadow-sm">
+        
+        <!-- Section Header -->
+        <div (click)="section.open = !section.open"
+             class="d-flex justify-content-between align-items-center px-4 py-3"
+             style="cursor:pointer; background: #eaf0fc; border-left: 4px solid #0d6efd; font-weight: 600;">
+          <span class="text-primary">{{ section.title }}</span>
+          <i [ngClass]="section.open ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
+        </div>
+
+        <!-- Section Content -->
+        <div *ngIf="section.open" class="px-4 py-3 bg-white">
+          <div *ngFor="let item of section.items" class="mb-2 row">
+            <div class="col-sm-4 fw-semibold text-secondary">{{ item.label }}</div>
+            <div class="col-sm-8">{{ item.value }}</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Logout Button -->
+  <div class="text-end mt-4">
+    <button (click)="logout()" class="btn btn-danger px-4 py-2" style="border-radius:30px;">
+      🔓 Logout
+    </button>
+  </div>
+
+</div>
+
+<ng-template #noAccount>
+  <p class="text-center text-muted fw-semibold mt-5">⚠️ No account holder data available.</p>
+</ng-template>

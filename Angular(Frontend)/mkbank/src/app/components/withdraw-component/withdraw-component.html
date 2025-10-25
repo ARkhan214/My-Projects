@@ -1,0 +1,41 @@
+<div class="transaction-form-container">
+  <h2 class="text-center text-primary mb-4">💸 Cash Out</h2>
+
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="transaction-form">
+
+    <!-- Transaction Type -->
+    <div class="form-group mb-3">
+      <label>Transaction Type</label>
+      <select formControlName="type" class="form-select">
+
+        <option [ngValue]="transactionType.WITHDRAW">Withdraw</option>
+  
+      </select>
+      <div *ngIf="formGroup.get('type')?.invalid && formGroup.get('type')?.touched" class="text-danger">
+        Transaction type is required.
+      </div>
+    </div>
+
+    <!-- Amount -->
+    <div class="form-group mb-3">
+      <label>Amount</label>
+      <input type="number" formControlName="amount" class="form-control" placeholder="Enter Amount">
+      <div *ngIf="formGroup.get('amount')?.invalid && formGroup.get('amount')?.touched" class="text-danger">
+        Amount must be greater than 0.
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group mb-3">
+      <label>Description</label>
+      <textarea formControlName="description" class="form-control" rows="3" placeholder="Optional"></textarea>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-success" [disabled]="formGroup.invalid">Submit</button>
+      <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+    </div>
+
+  </form>
+</div>

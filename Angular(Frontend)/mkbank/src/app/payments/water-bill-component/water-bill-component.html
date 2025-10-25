@@ -1,0 +1,83 @@
+<div class="container my-5">
+  <div class="card shadow-lg border-0 mx-auto" style="max-width: 720px; border-radius:16px;">
+    <div class="card-body p-5">
+
+      <!-- Title -->
+      <h2 class="card-title mb-4 text-center fw-bold" style="font-size:2rem; color:#0dcaf0; text-shadow:1px 1px 2px rgba(0,0,0,0.1);">
+        💧 Water Bill Payment
+      </h2>
+      <hr class="mb-4" style="border-color:#0dcaf0; opacity:0.3;">
+
+      <form [formGroup]="waterBillForm" (ngSubmit)="onSubmit()">
+
+        <!-- Water Supply Company -->
+        <div class="mb-4">
+          <label for="companyName" class="form-label fw-semibold mr-3" style="font-size:1.2rem; color:#0dcaf0;">
+            Select Water Supply Company
+          </label>
+          <select id="companyName" formControlName="companyName"
+                  class="form-select form-control-lg rounded-pill"
+                  style="font-size:1.15rem; padding:0.75rem 1rem; height:50px;">
+            <option value="" disabled selected>-- Select Company --</option>
+            <option value="dhaka_wasa">Dhaka WASA</option>
+            <option value="chattogram_wasa">Chattogram WASA</option>
+            <option value="khulna_wasa">Khulna WASA</option>
+            <option value="rajshahi_wasa">Rajshahi WASA</option>
+            <option value="barishal_wasa">Barishal WASA</option>
+            <option value="sylhet_wasa">Sylhet WASA</option>
+          </select>
+          <div class="text-danger mt-1 small"
+               *ngIf="waterBillForm.get('companyName')?.touched && waterBillForm.get('companyName')?.hasError('required')">
+            Company name is required.
+          </div>
+        </div>
+
+        <!-- Account Holder / Billing ID -->
+        <div class="mb-4">
+          <label for="accountHolderBillingId" class="form-label fw-semibold" style="font-size:1.2rem; color:#0dcaf0;">
+            Account Holder / Billing ID
+          </label>
+          <input id="accountHolderBillingId" type="text" formControlName="accountHolderBillingId"
+                 class="form-control form-control-lg rounded-pill"
+                 placeholder="Enter billing ID / consumer number" style="height:50px; padding:0.75rem 1rem; font-size:1.15rem;" />
+          <div class="text-danger mt-1 small"
+               *ngIf="waterBillForm.get('accountHolderBillingId')?.touched && waterBillForm.get('accountHolderBillingId')?.hasError('required')">
+            Billing ID is required.
+          </div>
+        </div>
+
+        <!-- Amount -->
+        <div class="mb-4">
+          <label for="amount" class="form-label fw-semibold" style="font-size:1.2rem; color:#0dcaf0;">
+            Amount
+          </label>
+          <input id="amount" type="number" formControlName="amount" min="1" step="0.01"
+                 class="form-control form-control-lg rounded-pill"
+                 placeholder="Enter amount" style="height:50px; padding:0.75rem 1rem; font-size:1.15rem;" />
+          <div class="text-danger mt-1 small" *ngIf="waterBillForm.get('amount')?.touched">
+            <span *ngIf="waterBillForm.get('amount')?.hasError('required')">Amount is required.</span>
+            <span *ngIf="waterBillForm.get('amount')?.hasError('min')">Amount must be at least 1.</span>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-between align-items-center mt-5">
+          <button type="submit" [disabled]="waterBillForm.invalid || !token"
+                  class="btn btn-info btn-lg px-5 rounded-pill shadow-sm">
+            💳 Pay Bill
+          </button>
+          <button type="button" (click)="resetForm()"
+                  class="btn btn-outline-secondary btn-lg px-4 rounded-pill">
+            Reset
+          </button>
+        </div>
+
+        <!-- Not logged in note -->
+        <div class="alert alert-warning mt-4 mb-0 rounded-pill text-center py-2 small" *ngIf="!token">
+          ⚠️ You are not logged in. Please login to make a payment.
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

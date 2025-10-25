@@ -1,0 +1,79 @@
+/* General card style */
+.card {
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+/* Card header */
+.card-header {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* Labels */
+label {
+  font-weight: 500;
+  color: #495057;
+}
+
+/* Inputs */
+input.form-control {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input.form-control:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+/* Buttons */
+button.btn-success {
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px 0;
+  transition: all 0.3s ease;
+}
+
+button.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+/* Form section headings */
+h5.text-primary {
+  font-weight: 600;
+  border-bottom: 2px solid #28a745;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+/* Alerts */
+.alert {
+  border-radius: 8px;
+  font-size: 0.95rem;
+  padding: 10px 15px;
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .form-group.row {
+    display: block;
+  }
+  .form-group.row .col-sm-4,
+  .form-group.row .col-sm-8 {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}

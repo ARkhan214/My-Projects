@@ -1,0 +1,199 @@
+:root {
+  --accent: #ffc107;
+  --primary: #0d6efd;
+  --success: #198754;
+  --danger: #dc3545;
+  --warning: #ffc107;
+  --info: #17a2b8;
+}
+
+/* GENERAL */
+html { scroll-behavior: smooth; }
+.btn { transition: all 0.3s ease; cursor: pointer; }
+h2, h3, h5 { font-weight: 700; }
+
+/* NAVBAR */
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.navbar-brand:hover {
+  color: #1f1d1d;
+  transform: scale(1.05);
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.brand-text {
+  font-size: 3rem; /* প্রয়োজনমতো adjust করো */
+  font-weight: 1050;
+}
+
+
+.brand-icon {
+  background: var(--accent);
+  color: #141414;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.brand-icon:hover {
+  background: #fff;
+  color: var(--accent);
+  transform: rotate(10deg) scale(1.1);
+}
+
+/* HERO / CAROUSEL */
+.carousel-img { height: 520px; object-fit: cover; }
+.hero-caption { top: 30%; transform: translateY(-30%); }
+.hero-card {
+  background: rgba(0,0,0,0.55);
+  padding: 25px;
+  border-radius: 15px;
+  color: #fff;
+}
+.badge-glow {
+  background: var(--accent);
+  color: #000;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 12px;
+}
+
+/* FEATURES */
+.feature-card {
+  background-color: #f8f9fa;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border-radius: 15px;
+  padding: 1rem;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+.card-icon {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+}
+.feature-card:hover .card-icon { transform: scale(1.2) rotate(10deg); }
+
+/* STATS CARDS */
+.bank-card {
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 1rem;
+}
+.bank-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.18);
+}
+.stat { font-size: 2rem; font-weight: 700; color: var(--accent); }
+.stat-icon { transition: transform 0.3s; }
+.bank-card:hover .stat-icon { transform: rotate(15deg) scale(1.2); }
+
+#dps {
+  position: relative;
+}
+
+#cards {
+  margin-top: 500px; /* বা তোমার প্রয়োজন অনুযায়ী */
+}
+
+/* CARD SECTION */
+.card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.card-hover:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* OPEN ACCOUNT */
+.account-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 1.5rem;
+  
+}
+
+/* BADGES */
+.badge { font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 12px; color: #fff; }
+
+/* Testimonial Card */
+.testi-card {
+  max-width: 500px;
+  background: linear-gradient(135deg, #e0f7ff, #ffffff);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testi-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.testi-card img {
+  border: 3px solid #0d6efd;
+  transition: transform 0.3s ease;
+}
+
+.testi-card img:hover {
+  transform: scale(1.1);
+}
+
+.testi-card strong {
+  color: #0d6efd;
+  font-size: 1.1rem;
+}
+
+.testi-card .text-muted {
+  font-size: 0.85rem;
+}
+
+.testi-card p {
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 0.8rem;
+  color: #343a40;
+}
+
+/* Carousel controls */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #0d6efd;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+}
+
+/* Quote icon */
+.testi-card i.fa-quote-left {
+  font-size: 1.2rem;
+  vertical-align: top;
+}
+
+
+/* FOOTER */
+footer {
+  background: #4626fd;
+  color: #fefcfc;
+  padding: 40px 0;
+}
+footer a { color: #f7f6f6; text-decoration: none; }
+footer a:hover { text-decoration: underline; }

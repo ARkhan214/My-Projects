@@ -1,0 +1,25 @@
+/* For card background */
+/* @keyframes colorShift {
+  0% { background-color: #ffe5ec; }
+  25% { background-color: #e0f7fa; }
+  50% { background-color: #fff3e0; }
+  75% { background-color: #f3e5f5; }
+  100% { background-color: #ffe5ec; }
+} */
+
+/* .animated-card {
+  animation: colorShift 15s infinite alternate;
+} */
+
+/* For labels color */
+/* @keyframes labelShift {
+  0% { color: #f0f1f7; }
+  25% { color: #888a8d; }
+  50% { color: #f0cd98; }
+  75% { color: #6e6b70; }
+  100% { color: #4d5fff; }
+} */
+
+/* .animated-label {
+  animation: labelShift 15s infinite alternate;
+} */

@@ -1,0 +1,108 @@
+<div class="container py-7" style="max-width:900px;">
+
+  <!-- Header -->
+  <div class="text-center mb-4">
+    <i class="fa fa-university mr-2 text-info" style="font-size:8rem; transition: transform 0.3s;"></i>
+
+    <h2 style="font-weight:900; font-size:3.2rem; color:#192d4a; transition: color 0.3s;">MK Bank Login Form</h2>
+    <p style="color: rgba(2, 22, 19, 0.6); font-size:1.5rem; transition: color 0.3s;">Securely access your account</p>
+  </div>
+
+  <!-- Card -->
+  <div class="card shadow-lg border-0 rounded-4"
+    style="background: rgba(255,255,255,0.15); backdrop-filter: blur(15px); border:1px solid rgba(255,255,255,0.25); transition: transform 0.3s, box-shadow 0.3s;">
+    <div class="card-body p-4">
+
+      <form (ngSubmit)="onSubmit()" #formRef="ngForm">
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold" style="color:#110101;">Email <span
+              style="color:#ff6b6b;">*</span></label>
+          <input [(ngModel)]="user.email" name="email" type="email" class="form-control" placeholder="Enter your email"
+            style="border:none; background: rgba(255,255,255,0.25); color:#1a1a1a; padding:14px; border-radius:1rem; box-shadow: inset 0 2px 6px rgba(0,0,0,0.2); transition: all 0.3s;"
+            required />
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold" style="color:#100101;">Password <span
+              style="color:#ff6b6b;">*</span></label>
+          <input [(ngModel)]="user.password" name="password" type="password" class="form-control"
+            placeholder="Enter your password"
+            style="border:none; background: rgba(255,255,255,0.25); color:#1a1a1a; padding:14px; border-radius:1rem; box-shadow: inset 0 2px 6px rgba(0,0,0,0.2); transition: all 0.3s;"
+            required />
+        </div>
+
+        <!-- Error / Success Messages -->
+        <div *ngIf="errorMessage" class="mb-3 text-center fw-semibold" style="color:#ff6b6b;">
+          {{ errorMessage }}
+        </div>
+        <div *ngIf="successMessage" class="mb-3 text-center fw-semibold" style="color:#6bffb3;">
+          {{ successMessage }}
+        </div>
+
+        <!-- Forgot Password -->
+        <div class="text-end mb-3">
+          <a routerLink="/forgot-password"
+            style="color:#171515; font-size:0.9rem; text-decoration:underline; transition: color 0.3s;">Forgot
+            Password?</a>
+        </div>
+
+
+        <div class="d-grid">
+          <!-- Submit Button -->
+          <button type="submit" style="padding:14px; border-radius:40px; font-size:18px; font-weight:600; 
+           background: linear-gradient(135deg,#0d6efd,#1e90ff); color:#fff; border:none; 
+           box-shadow:0 8px 20px rgba(0,0,0,0.3); transition: all 0.3s ease; cursor:pointer;"
+            onmouseover="this.style.background='linear-gradient(135deg,#1e90ff,#0d6efd)'; this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.4)';"
+            onmouseout="this.style.background='linear-gradient(135deg,#0d6efd,#1e90ff)'; this.style.transform='scale(1)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.3)';">
+            <i class="fa-solid fa-right-to-bracket"></i> Login
+          </button>
+
+          <!-- Reset Button -->
+          <button type="button" class="btn ml-3" style="padding:12px 30px; border-radius:40px; font-size:16px; font-weight:600; 
+           background: linear-gradient(135deg,#ff4b2b,#ff6b6b); color:#fff; border:none; 
+           box-shadow:0 8px 20px rgba(0,0,0,0.3); transition: all 0.3s ease; cursor:pointer;" (click)="onReset()">
+            <i class="fa-solid fa-rotate-left"></i> Reset
+          </button>
+        </div>
+
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- Hover Effects -->
+<style>
+  /* Card hover */
+  .card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  }
+
+  /* Button hover */
+  .btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+  }
+
+  /* University Icon hover */
+  .fa-university:hover {
+    transform: rotate(10deg) scale(1.1);
+    color: #ffca28;
+  }
+
+  /* Forgot link hover */
+  a:hover {
+    color: #0d6efd !important;
+  }
+
+  /* Input focus */
+  input:focus {
+    box-shadow: 0 0 12px #0d6efd inset;
+    background: rgba(255, 255, 255, 0.35);
+  }
+</style>

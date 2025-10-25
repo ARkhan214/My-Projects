@@ -1,0 +1,52 @@
+<p>admin-loan-approve-component works!</p>
+<div class="my-4">
+  <h2 class="text-primary mb-4">Pending Loans</h2>
+
+  <p *ngIf="loans.length === 0" class="text-warning">No pending loans found.</p>
+
+  <div class="table-responsive" *ngIf="loans.length > 0">
+    <table class="table table-striped table-hover table-bordered align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Loan ID</th>
+          <th>Loan Amount</th>
+          <th>Interest Rate</th>
+          <th>EMI Amount</th>
+          <th>Remaining Amount</th>
+          <th>Already Paid Amount</th>
+          <th>Loan Type</th>
+          <th>Loan Start Date</th>
+          <th>Loan Complete Date</th>
+          <th>Account Name</th>
+          <th>Account Number</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let loan of loans">
+          <td>{{ loan.id }}</td>
+          <td class="text-success">৳ {{ loan.loanAmount | number:'1.2-2' }}</td>
+          <td>{{ loan.interestRate }}%</td>
+          <td>৳ {{ loan.emiAmount | number:'1.2-2' }}</td>
+          <td>৳ {{ loan.remainingAmount | number:'1.2-2' }}</td>
+          <td>৳ {{ loan.totalAlreadyPaidAmount | number:'1.2-2' }}</td>
+          <td>{{ loan.loanType }}</td>
+          <td>{{ loan.loanStartDate | date:'mediumDate' }}</td>
+          <td>{{ loan.loanMaturityDate | date:'mediumDate' }}</td>
+          <td>{{ loan.account.name }}</td>
+          <td>{{ loan.account.id }}</td>
+          <td>৳ {{ loan.status }}</td>
+          <td>
+            <button class="btn btn-success btn-sm me-1 mb-2 mr-2" (click)="approveLoan(loan.id)">
+              Approve
+            </button>
+            <button class="btn btn-danger btn-sm mb-2 ml-2" (click)="rejectLoan(loan.id)">
+              Reject
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

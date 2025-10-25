@@ -1,0 +1,50 @@
+<div class="fd-container container my-4" style="font-family: Arial, sans-serif; color: #333;">
+
+  <h2 class="text-center text-primary mb-4">My Fixed Deposits</h2>
+
+  <div *ngIf="loading" class="text-center text-info fw-bold">Loading Fixed Deposits...</div>
+  <div *ngIf="errorMessage" class="text-center text-danger fw-bold">{{ errorMessage }}</div>
+
+  <div *ngIf="!loading && fds.length > 0" class="row g-3">
+    <div *ngFor="let fd of fds" class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm"
+        style="border-radius: 12px; background: #f8f9fa; border-left: 5px solid #0d6efd;">
+        <div class="card-body">
+          <h5 class="card-title text-primary">FD #{{ fd.id }}</h5>
+          <p class="card-text mb-1"><strong>Deposit Amount:</strong> <span class="text-success">{{ fd.depositAmount |
+              number:'1.2-2' }}</span></p>
+          <p class="card-text mb-1"><strong>Duration:</strong> <span class="text-info">{{ fd.durationInMonths }}
+              months</span></p>
+          <p class="card-text mb-1"><strong>Interest Rate:</strong> <span class="text-warning">{{ fd.interestRate
+              }}%</span></p>
+          <p class="card-text mb-1"><strong>Maturity Amount:</strong> <span class="text-success">{{ fd.maturityAmount |
+              number:'1.2-2' }}</span></p>
+          <p class="card-text mb-1">
+            <strong>Status:</strong>
+            <span [ngClass]="{
+              'text-success': fd.status === 'ACTIVE',
+              'text-warning': fd.status === 'PENDING',
+              'text-danger': fd.status === 'CLOSED'
+            }" style="font-weight: bold;">{{ fd.status }}</span>
+          </p>
+          <p class="card-text mb-1"><strong>Start Date:</strong> <span class="text-secondary">{{ fd.startDate |
+              date:'mediumDate' }}</span></p>
+          <p class="card-text mb-0"><strong>Maturity Date:</strong> <span class="text-secondary">{{ fd.maturityDate |
+              date:'mediumDate' }}</span></p>
+
+          <!-- Close Button -->
+          <div class="mt-3" *ngIf="fd.status === 'ACTIVE' && fd.account?.id">
+            <button class="btn btn-danger btn-sm" (click)="confirmClose(fd.id, fd.account?.id)">Close FD</button>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && fds.length === 0" class="text-center text-muted fw-bold mt-3">
+    No Fixed Deposits found.
+  </div>
+</div>

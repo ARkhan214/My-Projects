@@ -1,0 +1,97 @@
+<div class="container my-5" style="max-width: 720px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="text-center text-primary mb-4">Apply for a Loan</h2>
+
+      <form>
+        <!-- Account Info -->
+        <h5 class="mb-3 border-bottom pb-2 text-secondary">Account Information</h5>
+
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Account Name</label>
+            <input type="text" [value]="accountName" class="form-control" readonly>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Account ID</label>
+            <input type="text" [value]="accountId" class="form-control" readonly>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Balance</label>
+            <input type="text" [value]="balance | number:'1.2-2'" class="form-control" readonly>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Account Type</label>
+            <input type="text" [value]="accountType" class="form-control" readonly>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">NID</label>
+            <input type="text" [value]="nid" class="form-control" readonly>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Phone Number</label>
+            <input type="text" [value]="phoneNumber" class="form-control" readonly>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Address</label>
+            <input type="text" [value]="address" class="form-control" readonly>
+          </div>
+        </div>
+
+        <!-- Loan Details -->
+        <h5 class="mb-3 mt-4 border-bottom pb-2 text-secondary">Loan Details</h5>
+
+        <div class="row g-3 mb-3">
+          <div class="col-md-4">
+            <label for="loanAmount" class="form-label">Loan Amount</label>
+            <input type="number" id="loanAmount" [(ngModel)]="loanAmount" name="loanAmount" (input)="calculateEmi()" class="form-control" placeholder="e.g. 100000">
+          </div>
+          <div class="col-md-4">
+            <label for="durationInMonths" class="form-label">Duration (Months)</label>
+            <input type="number" id="durationInMonths" [(ngModel)]="durationInMonths" name="durationInMonths" (input)="calculateEmi()" class="form-control" placeholder="e.g. 12">
+          </div>
+          <div class="col-md-4">
+            <label for="loanType" class="form-label">Loan Type</label>
+            <select id="loanType" [(ngModel)]="loanType" name="loanType" (change)="calculateEmi()" class="form-select">
+              <option value="" disabled selected>Select type</option>
+              <option value="PERSONAL">Personal</option>
+              <option value="HOME">Home</option>
+              <option value="CAR">Car</option>
+              <option value="EDUCATION">Education</option>
+              <option value="BUSINESS">Business</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- EMI Summary -->
+        <div *ngIf="emi > 0 || totalPayable > 0" class="bg-light rounded p-3 mb-3 border">
+          <h6 class="text-muted mb-3">Loan Summary</h6>
+          <div class="row">
+            <div class="col-md-4">
+              <small class="text-uppercase text-secondary">Interest Rate</small>
+              <div class="fw-semibold">{{ interestRate }}%</div>
+            </div>
+            <div class="col-md-4">
+              <small class="text-uppercase text-secondary">Total Payable</small>
+              <div class="fw-semibold">{{ totalPayable | number:'1.2-2' }}</div>
+            </div>
+            <div class="col-md-4">
+              <small class="text-uppercase text-secondary">Monthly EMI</small>
+              <div class="fw-semibold">{{ emi | number:'1.2-2' }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid">
+          <button type="button" class="btn btn-primary" (click)="applyLoan()">Apply Now</button>
+        </div>
+
+        <!-- Response Message -->
+        <div *ngIf="message" class="alert alert-info mt-3 mb-0">
+          {{ message }}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

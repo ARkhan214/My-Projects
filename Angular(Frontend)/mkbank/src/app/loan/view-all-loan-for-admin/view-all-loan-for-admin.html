@@ -1,0 +1,76 @@
+<div class="my-4">
+    <h2 class="text-primary mb-4 text-center">View All Loan</h2>
+
+
+    <!-- 🔍 Search Inputs -->
+    <div class="row mb-3 g-2">
+        <div class="col-md-3">
+            <input type="text" [(ngModel)]="searchById" placeholder="Search by ID" class="form-control"
+                (input)="filterById()" (keydown.enter)="filterById()" />
+        </div>
+        <div class="col-md-3">
+            <input type="text" [(ngModel)]="searchByAccountId" placeholder="Search by Account ID" class="form-control"
+                (input)="filterByAccountId()" (keydown.enter)="filterByAccountId()" />
+        </div>
+
+
+        <div class="col-md-3">
+            <input type="text" [(ngModel)]="searchByLoanAmount" placeholder="Search by Loan Amount" class="form-control"
+                (input)="filterByLoanAmount()" (keydown.enter)="filterByLoanAmount()" />
+        </div>
+
+        <div class="col-md-3">
+            <select [(ngModel)]="searchByLoanType" class="form-select" (change)="filterByLoanType()">
+                <option value="">All Loan Type</option>
+                <option value="PERSONAL">PERSONAL</option>
+                <option value="HOME">HOME</option>
+                <option value="CAR">CAR</option>
+                <option value="EDUCATION">EDUCATION</option>
+                <option value="BUSINESS">BUSINESS</option>
+            </select>
+        </div>
+
+    </div>
+
+
+    <p *ngIf="loans.length === 0" class="text-warning">No pending loans found.</p>
+
+    <div class="table-responsive" *ngIf="loans.length > 0">
+        <table class="table table-striped table-hover table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Loan ID</th>
+                    <th>Loan Amount</th>
+                    <th>Interest Rate</th>
+                    <th>EMI Amount</th>
+                    <th>Remaining Amount</th>
+                    <th>Already Paid Amount</th>
+                    <th>Loan Type</th>
+                    <th>Loan Start Date</th>
+                    <th>Loan Complete Date</th>
+                    <th>Account Name</th>
+                    <th>Account Number</th>
+                    <th>Balance</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let loan of filteredLoan">
+                    <td>{{ loan.id }}</td>
+                    <td class="text-success">৳ {{ loan.loanAmount | number:'1.2-2' }}</td>
+                    <td>{{ loan.interestRate }}%</td>
+                    <td>৳ {{ loan.emiAmount | number:'1.2-2' }}</td>
+                    <td>৳ {{ loan.remainingAmount | number:'1.2-2' }}</td>
+                    <td>৳ {{ loan.totalAlreadyPaidAmount | number:'1.2-2' }}</td>
+                    <td>{{ loan.loanType }}</td>
+                    <td>{{ loan.loanStartDate | date:'mediumDate' }}</td>
+                    <td>{{ loan.loanMaturityDate | date:'mediumDate' }}</td>
+                    <td>{{ loan.account.name }}</td>
+                    <td>{{ loan.account.id }}</td>
+                    <td>৳ {{ loan.account.balance | number:'1.2-2' }}</td>
+                    <td>৳ {{ loan.status }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

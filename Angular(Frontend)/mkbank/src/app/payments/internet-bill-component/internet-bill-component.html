@@ -1,0 +1,76 @@
+<div class="container my-5">
+  <div class="card shadow-lg border-0 mx-auto" style="max-width: 720px; border-radius: 16px;">
+    <div class="card-body p-5">
+      <h2 class="card-title mb-4 text-center fw-bold text-primary">
+        🌐 Internet Bill Payment
+      </h2>
+      <hr class="mb-4">
+
+      <form [formGroup]="internetBillForm" (ngSubmit)="onSubmit()">
+
+        <!-- Company Name -->
+        <div class="mb-4">
+          <label for="companyName" class="form-label fw-semibold mr-3" style="color:#0d6efd; font-size:1.3rem;">Internet
+            Service Provider</label><br>
+          <select id="companyName" formControlName="companyName" class="form-select form-select-lg rounded-pill"
+            style="font-size:1.25rem; padding:0.75rem 1rem; height:50px;width: 620px;">
+            <option value="" disabled selected>-- Select Internet Provider --</option>
+            <option value="Link3 Technologies Ltd.">Link3 Technologies Ltd.</option>
+            <option value="AmberIT">AmberIT</option>
+            <option value="DOT Internet">DOT Internet</option>
+            <option value="Carnival Internet">Carnival Internet</option>
+            <option value="MetroNet Bangladesh">MetroNet Bangladesh</option>
+            <option value="ICX / IS Pros">ICX / IS Pros</option>
+            <option value="Amra Networks Ltd.">Amra Networks Ltd.</option>
+            <option value="Summit Communications Ltd.">Summit Communications Ltd.</option>
+            <option value="Aamra Technologies">Aamra Technologies</option>
+            <option value="Triangle Services Ltd.">Triangle Services Ltd.</option>
+          </select>
+          <div class="text-danger mt-1 small"
+            *ngIf="internetBillForm.get('companyName')?.touched && internetBillForm.get('companyName')?.hasError('required')">
+            Company name is required.
+          </div>
+        </div>
+
+        <!-- Account / Consumer ID -->
+        <div class="mb-4">
+          <label for="accountHolderBillingId" class="form-label fw-semibold" style="color:#0d6efd; font-size:1.3rem;">Account / Consumer ID</label>
+          <input id="accountHolderBillingId" type="text" formControlName="accountHolderBillingId"
+            class="form-control form-control-lg rounded-pill" placeholder="Enter consumer ID / billing ID" />
+          <div class="text-danger mt-1 small"
+            *ngIf="internetBillForm.get('accountHolderBillingId')?.touched && internetBillForm.get('accountHolderBillingId')?.hasError('required')">
+            Billing ID is required.
+          </div>
+        </div>
+
+        <!-- Amount -->
+        <div class="mb-4">
+          <label for="amount" class="form-label fw-semibold" style="color:#0d6efd; font-size:1.3rem;">Amount</label>
+          <input id="amount" type="number" formControlName="amount" min="1" step="0.01"
+            class="form-control form-control-lg rounded-pill" placeholder="Enter amount" />
+          <div class="text-danger mt-1 small" *ngIf="internetBillForm.get('amount')?.touched">
+            <span *ngIf="internetBillForm.get('amount')?.hasError('required')">Amount is required.</span>
+            <span *ngIf="internetBillForm.get('amount')?.hasError('min')">Amount must be at least 1.</span>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-between align-items-center mt-5">
+          <button type="submit" [disabled]="internetBillForm.invalid || !token"
+            class="btn btn-primary btn-lg px-5 rounded-pill shadow-sm">
+            💳 Pay Bill
+          </button>
+          <button type="button" (click)="resetForm()" class="btn btn-outline-secondary btn-lg px-4 rounded-pill">
+            Reset
+          </button>
+        </div>
+
+        <!-- Not logged in note -->
+        <div class="alert alert-warning mt-4 mb-0 rounded-pill text-center py-2 small" *ngIf="!token">
+          ⚠️ You are not logged in. Please login to make a payment.
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

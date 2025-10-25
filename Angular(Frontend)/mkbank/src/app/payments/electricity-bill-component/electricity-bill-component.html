@@ -1,0 +1,79 @@
+<div class="container my-5">
+  <div class="transaction-container p-5 shadow-lg bg-light border-0 rounded-4" style="max-width:700px; margin:auto;">
+    <div class="card-body">
+
+      <!-- Title -->
+      <h2 class="card-title mb-4 text-center fw-bold" style="font-size:2.1rem; color:#ff5722; text-shadow:1px 1px 2px rgba(0,0,0,0.2);">
+        ⚡ Electricity Bill Payment
+      </h2>
+      <hr class="mb-4" style="border-color:#ff5722; opacity:0.4;">
+
+      <form [formGroup]="electricityBillForm" (ngSubmit)="onSubmit()">
+
+        <!-- Company Name -->
+        <div class="mb-4">
+          <label for="companyName" class="form-label fw-semibold" style="color:#ff5722; font-size:1.2rem;">
+            Electricity Supplier Company
+          </label>
+          <select id="companyName" formControlName="companyName"
+                  class="form-select form-control-lg rounded-pill" 
+                  style="font-size:1.15rem; padding:0.75rem 1rem; height:50px; width: 570px;">
+            <option value="" disabled selected>-- Select Electricity Supplier --</option>
+            <option value="DESCO (Dhaka Electric Supply Company Ltd.)">DESCO (Dhaka Electric Supply Company Ltd.)</option>
+            <option value="DPDC (Dhaka Power Distribution Company Ltd.)">DPDC (Dhaka Power Distribution Company Ltd.)</option>
+            <option value="BPDB (Bangladesh Power Development Board)">BPDB (Bangladesh Power Development Board)</option>
+            <option value="REB (Rural Electrification Board / Palli Bidyut)">REB (Rural Electrification Board / Palli Bidyut)</option>
+            <option value="NESCO (Northern Electricity Supply Company Ltd.)">NESCO (Northern Electricity Supply Company Ltd.)</option>
+            <option value="WZPDCL (West Zone Power Distribution Company Ltd.)">WZPDCL (West Zone Power Distribution Company Ltd.)</option>
+            <option value="BREB (Bangladesh Rural Electrification Board)">BREB (Bangladesh Rural Electrification Board)</option>
+          </select>
+          <div class="text-danger mt-1 small"
+               *ngIf="electricityBillForm.get('companyName')?.touched && electricityBillForm.get('companyName')?.hasError('required')">
+            Company name is required.
+          </div>
+        </div>
+
+        <!-- Account / Consumer ID -->
+        <div class="mb-4">
+          <label for="accountHolderBillingId" class="form-label fw-semibold" style="color:#ff5722; font-size:1.2rem;">
+            Account / Consumer ID
+          </label>
+          <input id="accountHolderBillingId" type="text" formControlName="accountHolderBillingId"
+                 class="form-control form-control-lg rounded-pill" placeholder="Enter consumer ID / billing ID" />
+          <div class="text-danger mt-1 small"
+               *ngIf="electricityBillForm.get('accountHolderBillingId')?.touched && electricityBillForm.get('accountHolderBillingId')?.hasError('required')">
+            Billing ID is required.
+          </div>
+        </div>
+
+        <!-- Amount -->
+        <div class="mb-4">
+          <label for="amount" class="form-label fw-semibold" style="color:#ff5722; font-size:1.2rem;">Amount</label>
+          <input id="amount" type="number" formControlName="amount" min="1" step="0.01"
+                 class="form-control form-control-lg rounded-pill" placeholder="Enter amount" />
+          <div class="text-danger mt-1 small" *ngIf="electricityBillForm.get('amount')?.touched">
+            <span *ngIf="electricityBillForm.get('amount')?.hasError('required')">Amount is required.</span>
+            <span *ngIf="electricityBillForm.get('amount')?.hasError('min')">Amount must be at least 1.</span>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-between align-items-center mt-5">
+          <button type="submit" [disabled]="electricityBillForm.invalid || !token"
+                  class="btn btn-warning btn-lg px-5 rounded-pill shadow-sm text-white">
+            ⚡ Pay Bill
+          </button>
+          <button type="button" (click)="resetForm()" class="btn btn-outline-dark btn-lg px-4 rounded-pill">
+            Reset
+          </button>
+        </div>
+
+        <!-- Not logged in note -->
+        <div class="alert alert-danger mt-4 mb-0 rounded-pill text-center py-2 small" *ngIf="!token">
+          ⚠️ You are not logged in. Please login to make a payment.
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

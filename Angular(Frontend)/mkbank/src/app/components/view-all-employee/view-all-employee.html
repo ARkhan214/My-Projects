@@ -1,0 +1,95 @@
+<p>view-all-employee works!</p>
+<div class="employee-container">
+  <h2 class="text-primary mb-4">All Employees</h2>
+
+  <!-- 🔍 Search Inputs -->
+  <div class="row mb-3 g-2">
+    <div class="col-md-2">
+      <input type="text" [(ngModel)]="searchById" placeholder="Search by ID" class="form-control" (input)="filterById()"
+        (keydown.enter)="filterById()" />
+    </div>
+
+    <div class="col-md-2">
+      <input type="text" [(ngModel)]="searchBySalary" placeholder="Search by salary" class="form-control"
+        (input)="filterBySalary()" (keydown.enter)="filterBySalary()" />
+    </div>
+
+    <div class="col-md-3">
+      <input type="text" [(ngModel)]="searchByNid" placeholder="Search by NID" class="form-control"
+        (input)="filterByNid()" (keydown.enter)="filterByNid()" />
+    </div>
+
+    <div class="col-md-3">
+      <input type="text" [(ngModel)]="searchByPhone" placeholder="Search by Phone" class="form-control"
+        (input)="filterByPhone()" (keydown.enter)="filterByPhone()" />
+    </div>
+
+    <!-- <div class="col-md-2">
+      <input type="text" [(ngModel)]="searchByPosation" placeholder="Search by Posation" class="form-control"
+        (input)="filterByPosition()" (keydown.enter)="filterByPosition()" />
+    </div> -->
+
+    <div class="col-md-2">
+      <select [(ngModel)]="searchByPosation" class="form-select" (change)="filterByPosition()">
+        <option value="">All Positions</option>
+        <option value="MANAGER">MANAGER</option>
+        <option value="ACCOUNTANT">ACCOUNTANT</option>
+        <option value="CASHIER">CASHIER</option>
+        <option value="ASSISTANT_MANAGER">ASSISTANT MANAGER</option>
+        <option value="JUNIOR_OFFICER">JUNIOR OFFICER</option>
+        <option value="SENIOR_OFFICER">SENIOR OFFICER</option>
+        <option value="OFFICER">OFFICER</option>
+        <option value="TELLER">TELLER</option>
+        <option value="INTERN">INTERN</option>
+      </select>
+    </div>
+
+
+  </div>
+
+
+
+
+  <div *ngIf="employee.length > 0" class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>NID</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Position</th>
+          <th>Salary</th>
+          <th>Date of Joining</th>
+          <th>Date of Birth</th>
+          <th>Retirement Date</th>
+          <th>Role</th>
+          <th>Photo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of filteredEmployee" class="hover:bg-gray-50">
+          <td>{{ emp.id }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.status }}</td>
+          <td>{{ emp.nid }}</td>
+          <td>{{ emp.phoneNumber }}</td>
+          <td>{{ emp.address }}</td>
+          <td>{{ emp.position }}</td>
+          <td>{{ emp.salary | number:'1.2-2' }}</td>
+          <td>{{ emp.dateOfJoining | date:'shortDate' }}</td>
+          <td>{{ emp.dateOfBirth | date:'shortDate' }}</td>
+          <td>{{ emp.retirementDate | date:'shortDate' }}</td>
+          <td>{{ emp.role }}</td>
+          <td>
+            <img *ngIf="emp.photo" [src]="'http://localhost:8085/images/employee/'+emp.photo" alt="Employee Photo"
+              class="employee-photo">
+            <span *ngIf="!emp.photo">-</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

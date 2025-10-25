@@ -1,0 +1,80 @@
+<!-- only-add-user.html -->
+<form [formGroup]="userAccountForm" (ngSubmit)="onSubmit()" novalidate class="form-wrap">
+
+    <div class="card-header bg-primary text-white text-center py-4"
+        style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <h2 class="mb-1 fw-bold">
+            <i class="fa fa-university me-3"></i> MK Bank
+        </h2>
+        <h5 class="mb-0 fw-semibold">
+            Add User Form
+        </h5>
+        <small class="text-light fst-italic mt-1 d-block">
+            Secure & Easy Banking Starts Here
+        </small>
+    </div>
+
+    <!-- Name -->
+    <div class="form-field">
+        <label for="name">Full Name <span class="req">*</span></label>
+        <input id="name" type="text" formControlName="name" placeholder="Name" autocomplete="name" />
+    </div>
+
+    <!-- Email -->
+    <div class="form-field">
+        <label for="email">Email <span class="req">*</span></label>
+        <input id="email" type="email" formControlName="email" placeholder="abcd@example.com" autocomplete="email" />
+
+        <!-- <small class="error" *ngIf="userForm.get('email')?.touched && userForm.get('email')?.hasError('email')">
+            Provide a valid email address.
+        </small> -->
+    </div>
+
+    <!-- Password -->
+    <div class="form-field">
+        <label for="password">Password <span class="req">*</span></label>
+        <input id="password" type="password" formControlName="password" placeholder="Enter a strong password"
+            autocomplete="new-password" />
+
+    </div>
+
+          <!-- Date of Birth -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold"><i class="fa fa-calendar me-2 text-primary"></i>Date of Birth</label>
+            <input type="date" class="form-control form-control-lg" formControlName="dateOfBirth">
+          </div>
+
+          <!-- phone -->
+            <div class="mb-3">
+            <label class="form-label fw-semibold d-block mb-2">Phone Number</label>
+            <input type="text" class="form-control form-control-lg" formControlName="phoneNumber" placeholder="Phone Number" required>
+          </div>
+
+          <!-- Role -->
+          <!-- <div class="col-md-6">
+            <label class="form-label fw-semibold"><i class="fa fa-user-shield me-2 text-primary"></i>Role</label>
+            <select class="form-select form-select-lg" formControlName="role">
+              <option value="ADMIN">ADMIN</option>
+              <option value="USER">USER</option>
+            </select>
+
+          </div> -->
+          
+
+    <!-- File upload (image) -->
+    <div class="form-field">
+        <label for="photo">Upload Photo (optional)</label>
+        <input id="photo" type="file" accept="image/*" (change)="onFileSelected($event)" />
+        <small *ngIf="selectedFile">Selected: {{ selectedFile.name }}</small>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+        <button type="submit" [disabled]="userAccountForm.invalid">
+            Save User
+        </button>
+        <button type="button" (click)="userAccountForm.reset(); selectedFile=null;">
+            Reset
+        </button>
+    </div>
+</form>

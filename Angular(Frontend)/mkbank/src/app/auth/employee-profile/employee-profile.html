@@ -1,0 +1,63 @@
+<p><h4 class="text-center">Employee-profile</h4>
+<div class="admin-profile-container" *ngIf="employee && employee.role === 'EMPLOYEE'; else noEmployee">
+  <h2>Welcome, {{ employee.name }}</h2>
+  <img *ngIf="employee.photo" [src]="'http://localhost:8085/images/employee/'+employee.photo" alt="Employee Photo" class="profile-photo">
+
+  <div class="admin-details">
+    <p><strong>ID:</strong> {{ employee.id }}</p>
+    <p><strong>Name:</strong> {{ employee.name }}</p>
+    <p><strong>Phone Number:</strong> {{ employee.phoneNumber }}</p>
+    <p><strong>Date of Birth:</strong> {{ employee.dateOfBirth | date:'dd-MM-yyyy' }}</p>
+    <p><strong>Role:</strong> {{ employee.role }}</p>
+  </div>
+
+  <div class="profile-actions">
+    <button (click)="logout()">Logout</button>
+  </div>
+</div>
+
+<ng-template #noEmployee>
+  <p>No employee data available.</p>
+</ng-template>
+
+<style>
+.admin-profile-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+.admin-details p {
+  margin: 5px 0;
+  text-align: left;
+}
+
+.profile-actions {
+  margin-top: 20px;
+}
+
+.profile-actions button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #d32f2f;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile-actions button:hover {
+  background-color: #9a0007;
+}
+</style>

@@ -1,0 +1,500 @@
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg bg-transparent px-4 py-3">
+  <div class="container d-flex justify-content-between align-items-center">
+
+    <!-- LEFT: BRAND / LOGO -->
+    <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/about"
+      style="font-weight:1500; font-size:1.3rem;">
+      <div class="brand-icon d-flex align-items-center justify-content-center">
+    <i class="fa fa-university mr-2 text-info" style="font-size:3rem; transition: transform 0.3s;"></i>
+      </div>
+      <span class="brand-text ml-2" style="font-size: 2.3rem;">
+        MK <span class="brand-accent" style="color:#0d6efd;">Bank</span>
+      </span>
+
+    </a>
+
+    <!-- CENTER: MENU ITEMS -->
+    <ul class="navbar-nav d-flex flex-row align-items-center gap-2">
+      <li class="nav-item">
+        <a class="nav-link mr-3" (click)="scrollTo('features')"
+          style="color:#198754; font-weight:600; padding:5px 12px; border-radius:8px; background-color:rgba(25,135,84,0.1); text-decoration:none; transition:all 0.3s ease;"
+          onmouseover="this.style.background='rgba(25,135,84,0.25)'; this.style.color='#fff'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)';"
+          onmouseout="this.style.background='rgba(25,135,84,0.1)'; this.style.color='#198754'; this.style.boxShadow='none';">
+          Features
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link mr-3" (click)="scrollTo('cards')"
+          style="color:#0d6efd; font-weight:600; padding:5px 12px; border-radius:8px; background-color:rgba(13,110,253,0.1); text-decoration:none; transition:all 0.3s ease;"
+          onmouseover="this.style.background='rgba(13,110,253,0.25)'; this.style.color='#fff'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)';"
+          onmouseout="this.style.background='rgba(13,110,253,0.1)'; this.style.color='#0d6efd'; this.style.boxShadow='none';">
+          Cards
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link mr-3" (click)="scrollTo('open')"
+          style="color:#ffc107; font-weight:600; padding:5px 12px; border-radius:8px; background-color:rgba(255,193,7,0.1); text-decoration:none; transition:all 0.3s ease;"
+          onmouseover="this.style.background='rgba(255,193,7,0.25)'; this.style.color='#fff'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)';"
+          onmouseout="this.style.background='rgba(255,193,7,0.1)'; this.style.color='#ffc107'; this.style.boxShadow='none';">
+          Open Account
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link mr-3" (click)="scrollTo('testimonials')"
+          style="color:#dc3545; font-weight:600; padding:5px 12px; border-radius:8px; background-color:rgba(220,53,69,0.1); text-decoration:none; transition:all 0.3s ease;"
+          onmouseover="this.style.background='rgba(220,53,69,0.25)'; this.style.color='#fff'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)';"
+          onmouseout="this.style.background='rgba(220,53,69,0.1)'; this.style.color='#dc3545'; this.style.boxShadow='none';">
+          Testimonials
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link mr-3" (click)="scrollTo('dps')"
+          style="color:#198754; font-weight:600; padding:5px 12px; border-radius:8px; background-color:rgba(25,135,84,0.1); text-decoration:none; transition:all 0.3s ease;"
+          onmouseover="this.style.background='rgba(25,135,84,0.25)'; this.style.color='#fff'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)';"
+          onmouseout="this.style.background='rgba(25,135,84,0.1)'; this.style.color='#198754'; this.style.boxShadow='none';">
+          DPS
+        </a>
+      </li>
+
+            <li class="nav-item">
+        <a class="nav-link mr-3" (click)="scrollTo('contact')"
+          style="color:#84ea10; font-weight:600; padding:5px 12px; border-radius:8px; background-color:rgba(25,135,84,0.1); text-decoration:none; transition:all 0.3s ease;"
+          onmouseover="this.style.background='rgba(25,135,84,0.25)'; this.style.color='#fff'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)';"
+          onmouseout="this.style.background='rgba(25,135,84,0.1)'; this.style.color='#198754'; this.style.boxShadow='none';">
+          Contact US
+        </a>
+      </li>
+
+    </ul>
+
+    <!-- RIGHT: LOGIN BUTTON -->
+    <div>
+      <a class="nav-link fw-semibold d-flex align-items-center gap-2" routerLink="/login"
+        style="color: #198754; border: 1px solid transparent; padding: 8px 15px; border-radius: 25px; transition: all 0.3s ease;"
+        onmouseover="this.style.background='#d1f7d6'; this.style.border='1px solid #198754'; this.style.color='#198754';"
+        onmouseout="this.style.background='transparent'; this.style.border='1px solid transparent'; this.style.color='#198754';">
+        <i class="fa fa-sign-in-alt me-1"></i>
+        <span>Login</span>
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+
+
+<!-- <li class="nav-item">
+          <a class="nav-link fw-semibold d-flex align-items-center gap-2" (click)="logout()"
+            style="color: #dc3545; border: 1px solid transparent; padding: 8px 15px; border-radius: 25px; transition: all 0.3s ease; cursor:pointer; text-decoration:none;"
+            onmouseover="this.style.background='#f8d7da'; this.style.border='1px solid #dc3545'; this.style.color='#dc3545';"
+            onmouseout="this.style.background='transparent'; this.style.border='1px solid transparent'; this.style.color='#dc3545';">
+            <i class="fa fa-sign-out-alt me-1"></i>
+            <span>Logout</span>
+          </a>
+        </li> -->
+
+<!-- HERO / CAROUSEL -->
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Carousel -->
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4500">
+  <div class="carousel-inner">
+
+    <!-- Slide 1 -->
+    <div class="carousel-item active">
+      <img
+        src="https://media.istockphoto.com/id/2234838122/photo/american-permanent-resident-card-on-bangladeshi-taka.jpg?s=612x612&w=0&k=20&c=G7zqcKW9OMwwKwWnE8E-uiajzNAmvUf9_p3Cypt_99w="
+        class="d-block w-100 carousel-img" alt="bank">
+      <div class="carousel-caption hero-caption text-start">
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-item">
+      <img src="https://www.bracbank.com/client_end/img/banner/home/bigscreen/1728207310_Agent-banking_web-banner.jpg"
+        class="d-block w-100 carousel-img" alt="cards">
+      <div class="carousel-caption hero-caption text-start">
+        <div class="hero-card">
+          <span class="badge-glow">HOT • Contactless</span>
+          <h1 class="hero-title mt-3">
+            Tap • Pay • Go — <span class="sparkle">Contactless</span>
+          </h1>
+          <p class="hero-sub">
+            Contactless debit & credit cards with worldwide acceptance and fraud protection.
+          </p>
+          <a class="btn btn-light btn-lg" href="#cards">
+            <i class="fa-solid fa-circle-check me-2"></i> Explore Cards
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-item">
+      <img src="https://www.bracbank.com/client_end/img/explore-banner/SME-1.jpg" class="d-block w-100 carousel-img"
+        alt="secure">
+    </div>
+
+  </div>
+
+  <!-- Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+<!-- FEATURES -->
+<section id="features" class="container py-5 mt-4">
+  <div class="row g-4 align-items-center">
+    <div class="col-lg-5">
+      <h2 class="fw-bold mb-3" style="color: #0d6efd;">Why MK Bank?</h2>
+      <p class="mb-4 px-3 py-2 rounded"
+        style="background: #e9f5ff; color:#343a40; font-size:1.1rem; line-height:1.8; border-left: 4px solid #0d6efd;">
+        আমরা <strong>ডিজিটাল ব্যাঙ্কিং</strong> কে সহজ, দ্রুত ও নিরাপদ করে তুলি — যাতে তোমার <strong>সময়</strong> আর
+        <strong>টাকা</strong> দুটোই বাঁচে।
+      </p>
+
+
+
+      <div class="row g-4">
+        <!-- Feature 1 -->
+        <div class="col-6">
+          <div class="feature-card d-flex gap-3 align-items-center p-3 rounded shadow-sm"
+            style="background: linear-gradient(135deg, #ffc107, #ffecb3); transition: transform 0.3s, box-shadow 0.3s;">
+            <div class="card-icon d-flex align-items-center justify-content-center rounded-circle shadow-sm"
+              style="width:50px; height:50px; background:#fff; color:#ffc107; font-size:22px;">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div>
+              <div class="fw-bold">Instant Setup</div>
+              <small class="text-muted">Account within minutes</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="col-6">
+          <div class="feature-card d-flex gap-3 align-items-center p-3 rounded shadow-sm"
+            style="background: linear-gradient(135deg, #2eb6ff, #cce6ff); transition: transform 0.3s, box-shadow 0.3s;">
+            <div class="card-icon d-flex align-items-center justify-content-center rounded-circle shadow-sm"
+              style="width:50px; height:50px; background:#fff; color:#2eb6ff; font-size:22px;">
+              <i class="fa-solid fa-earth-americas"></i>
+            </div>
+            <div>
+              <div class="fw-bold">Global Cards</div>
+              <small class="text-muted">Use worldwide</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="col-6">
+          <div class="feature-card d-flex gap-3 align-items-center p-3 rounded shadow-sm"
+            style="background: linear-gradient(135deg, #0d6efd, #99cfff); transition: transform 0.3s, box-shadow 0.3s;">
+            <div class="card-icon d-flex align-items-center justify-content-center rounded-circle shadow-sm"
+              style="width:50px; height:50px; background:#fff; color:#0d6efd; font-size:22px;">
+              <i class="fa-solid fa-shield"></i>
+            </div>
+            <div>
+              <div class="fw-bold">Top Security</div>
+              <small class="text-muted">24/7 fraud monitoring</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="col-6">
+          <div class="feature-card d-flex gap-3 align-items-center p-3 rounded shadow-sm"
+            style="background: linear-gradient(135deg, #28a745, #b3e6c4); transition: transform 0.3s, box-shadow 0.3s;">
+            <div class="card-icon d-flex align-items-center justify-content-center rounded-circle shadow-sm"
+              style="width:50px; height:50px; background:#fff; color:#28a745; font-size:22px;">
+              <i class="fa-solid fa-wallet"></i>
+            </div>
+            <div>
+              <div class="fw-bold">Low Fees</div>
+              <small class="text-muted">Transparent pricing</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Stats -->
+    <div class="col-lg-7">
+      <div class="row g-4">
+        <!-- Customers -->
+        <div class="col-md-4">
+          <div class="bank-card text-center p-4 rounded shadow-sm"
+            style="background: linear-gradient(135deg, #ff9a9e, #fad0c4); transition: transform 0.3s, box-shadow 0.3s;">
+            <div class="stat-icon mb-2" style="font-size:30px; color:#ff4d6d;">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="text-muted small">Customers</div>
+            <div class="stat fs-3 fw-bold" data-target="125000">0</div>
+            <div class="text-muted small">Satisfied users</div>
+          </div>
+        </div>
+
+        <!-- Transactions -->
+        <div class="col-md-4">
+          <div class="bank-card text-center p-4 rounded shadow-sm"
+            style="background: linear-gradient(135deg, #a1c4fd, #c2e9fb); transition: transform 0.3s, box-shadow 0.3s;">
+            <div class="stat-icon mb-2" style="font-size:30px; color:#2b7bff;">
+              <i class="fa-solid fa-exchange-alt"></i>
+            </div>
+            <div class="text-muted small">Transactions</div>
+            <div class="stat fs-3 fw-bold" data-target="4200000">0</div>
+            <div class="text-muted small">Processed monthly</div>
+          </div>
+        </div>
+
+        <!-- Support -->
+        <div class="col-md-4">
+          <div class="bank-card text-center p-4 rounded shadow-sm"
+            style="background: linear-gradient(135deg, #81fbb8, #28c76f); transition: transform 0.3s, box-shadow 0.3s;">
+            <div class="stat-icon mb-2" style="font-size:30px; color:#198754;">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+            <div class="text-muted small">Support</div>
+            <div class="stat fs-3 fw-bold" data-target="24">0</div>
+            <div class="text-muted small">/7 Live</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DPS Section -->
+<section id="dps" class="container py-5 mt-4" style="position: relative;">
+  <p class="mb-4 px-3 py-2 rounded"
+    style="background: #e9f5ff; color:#343a40; font-size:1.1rem; line-height:1.8; border-left: 4px solid #0d6efd;">
+    আমাদের <strong>DPS (Daily/Monthly Savings Plan)</strong> আপনাকে নিয়মিত সঞ্চয় করতে সাহায্য করে, যেখানে রয়েছে
+    <strong>উচ্চ সুদ</strong> এবং <strong>সহজ অ্যাক্সেস</strong>। ছোট ছোট পরিকল্পনা দিয়ে আপনার <strong>ভবিষ্যৎ
+      নিশ্চিত</strong> করুন এবং আর্থিক স্বাধীনতা উপভোগ করুন।
+  </p>
+
+  <div class="carousel-item active">
+    <img class="d-block w-100" src="https://www.bracbank.com/client_end/img/achieve/achieve-banner1.jpg" alt="Retail">
+  </div>
+</section>
+
+
+<!-- CARDS -->
+<section id="cards" class="container py-5">
+  <h3 class="fw-bold text-center mb-5" style="color:#0d6efd;">Our Cards — Choose Your Style</h3>
+  <div class="row g-4">
+
+    <!-- Debit Card -->
+    <div class="col-md-3">
+      <div class="bank-card text-center p-4 rounded shadow-sm card-hover"
+        style="background: #e3f2fd; transition: all 0.3s ease;">
+        <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="debit" style="height:70px">
+        <h5 class="mt-3 fw-bold" style="color:#0d6efd;">Debit Card</h5>
+        <p class="text-muted small">Everyday spending with cashback.</p>
+        <button class="btn btn-primary btn-sm w-75">Apply</button>
+      </div>
+    </div>
+
+    <!-- Credit Card -->
+    <div class="col-md-3">
+      <div class="bank-card text-center p-4 rounded shadow-sm card-hover"
+        style="background: #f1f5f9; transition: all 0.3s ease;">
+        <img src="https://cdn-icons-png.flaticon.com/512/196/196565.png" alt="credit" style="height:70px">
+        <h5 class="mt-3 fw-bold" style="color:#0d6efd;">Credit Card</h5>
+        <p class="text-muted small">Flexible limits & rewards.</p>
+        <button class="btn btn-success btn-sm w-75">Apply</button>
+      </div>
+    </div>
+
+    <!-- Visa -->
+    <div class="col-md-3">
+      <div class="bank-card text-center p-4 rounded shadow-sm card-hover"
+        style="background: #fff3e0; transition: all 0.3s ease;">
+        <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png" alt="visa" style="height:70px">
+        <h5 class="mt-3 fw-bold" style="color:#fd7e14;">Visa</h5>
+        <p class="text-muted small">Accepted worldwide.</p>
+        <button class="btn btn-warning btn-sm w-75">Apply</button>
+      </div>
+    </div>
+
+    <!-- MasterCard -->
+    <div class="col-md-3">
+      <div class="bank-card text-center p-4 rounded shadow-sm card-hover"
+        style="background: #ffe3e3; transition: all 0.3s ease;">
+        <img src="https://cdn-icons-png.flaticon.com/512/196/196570.png" alt="master" style="height:70px">
+        <h5 class="mt-3 fw-bold" style="color:#dc3545;">MasterCard</h5>
+        <p class="text-muted small">Premium perks & lounge access.</p>
+        <button class="btn btn-danger btn-sm w-75">Apply</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- OPEN ACCOUNT -->
+<section id="open" class="container py-5">
+  <h3 class="fw-bold text-center mb-4">Open an Account — Simple Steps</h3>
+  <div class="row g-4 align-items-center">
+
+    <!-- Steps Section -->
+    <div class="col-lg-6">
+      <div class="account-card p-4 rounded shadow-sm"
+        style="background: linear-gradient(135deg, #f5f7fa, #e0f0ff); border-left: 6px solid #0d6efd;">
+        <h5 class="fw-bold mb-3" style="color:#0d6efd;">How to Open an Account</h5>
+        <ol class="mb-0" style="line-height:1.8; font-weight:500;">
+          <li><strong>Sign Up:</strong> নাম, ফোন, ইমেইল দিন।</li>
+          <li><strong>Verify:</strong> OTP দিয়ে ভেরিফাই করুন।</li>
+          <li><strong>Upload Docs:</strong> NID/Passport + ছবি আপলোড করুন।</li>
+          <li><strong>Activate:</strong> Instant virtual card ব্যবহারের জন্য প্রস্তুত।</li>
+        </ol>
+        <div class="mt-4">
+          <a href="#" class="btn btn-lg btn-warning me-2" style="transition: all 0.3s ease;"
+            onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
+            <i class="fa-solid fa-user-plus me-2"></i> Open Savings
+          </a>
+          <a href="#" class="btn btn-lg btn-outline-primary" style="transition: all 0.3s ease;"
+            onmouseover="this.style.background='#0d6efd'; this.style.color='#fff';"
+            onmouseout="this.style.background='transparent'; this.style.color='#0d6efd';">
+            <i class="fa-solid fa-briefcase me-2"></i> Open Current
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="col-lg-6">
+      <div class="account-card p-4 rounded shadow-sm"
+        style="background: linear-gradient(135deg, #fff5f8, #ffe6f0); border-left: 6px solid #dc3545;">
+        <h5 class="fw-bold mb-3" style="color:#dc3545;">Benefits</h5>
+        <div class="d-flex gap-3 flex-wrap mt-3">
+          <span class="badge" style="background:#0d6efd; color:#fff;">Zero Maintenance</span>
+          <span class="badge" style="background:#198754; color:#fff;">Free Virtual Card</span>
+          <span class="badge" style="background:#fd7e14; color:#fff;">Instant Transfers</span>
+          <span class="badge" style="background:#6f42c1; color:#fff;">Mobile App</span>
+        </div>
+        <p class="mt-3 text-muted" style="font-weight:500; line-height:1.6;">
+          একবারে সব কিছু — ডিজিটাল কেয়ার এবং কাস্টমার সাপোর্ট ২৪/৭।
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="container py-5">
+  <h3 class="fw-bold text-center mb-5" style="color:#0d6efd;">Trusted by Thousands</h3>
+
+  <div id="testiSlide" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+    <div class="carousel-inner">
+
+      <!-- Testimonial 1 -->
+      <div class="carousel-item active">
+        <div class="testi-card mx-auto p-4">
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ashik" class="rounded-circle" width="64"
+              height="64">
+            <div>
+              <strong>Ashik Rahman</strong>
+              <div class="text-muted small">Small Business Owner</div>
+            </div>
+          </div>
+          <p class="mt-3 mb-0">
+            <i class="fa fa-quote-left me-2 text-primary"></i>
+            MK Bank-er app diye payment accept kora onek easy hoye geche. Support o khub fast.
+          </p>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="carousel-item">
+        <div class="testi-card mx-auto p-4">
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya" class="rounded-circle" width="64"
+              height="64">
+            <div>
+              <strong>Priya Sultana</strong>
+              <div class="text-muted small">Student</div>
+            </div>
+          </div>
+          <p class="mt-3 mb-0">
+            <i class="fa fa-quote-left me-2 text-primary"></i>
+            Student account-er benefits and zero charges amar jonno perfect.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#testiSlide" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#testiSlide" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="main-footer sticky-footer">
+  <!-- Your MK Bank Footer Content -->
+  <div class="container mt-4">
+    <div class="row gy-4">
+      <div class="col-md-4">
+        <h5 class="text-white">MK Bank</h5>
+        <p class="text-muted small">
+          Fast. Secure. Friendly. আপনার প্রতিদিনের ব্যাংকিং এখন আনন্দের।
+        </p>
+      </div>
+      <div class="col-md-4">
+        <h6 class="text-white">Quick Links</h6>
+        <ul class="list-unstyled text-muted small">
+          <li>About Us</li>
+          <li>Careers</li>
+          <li>Help Center</li>
+          <li>Privacy & TOS</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <section id="contact" class="container py-5 mt-4" style="position: relative;">
+          <h6 class="text-white" routerLink="/contact">Contact</h6>
+        </section>
+        
+        <p class="text-muted small mb-1">supportmkbank.example</p>
+        <p class="text-muted small">+880 1X-XXX-XXXX</p>
+        <div class="mt-2">
+          <a class="text-white me-2"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="text-white me-2"><i class="fa-brands fa-twitter"></i></a>
+          <a class="text-white"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center small text-muted mt-4">
+      © {{ currentYear }} MK Bank. All rights reserved.
+    </div>
+  </div>

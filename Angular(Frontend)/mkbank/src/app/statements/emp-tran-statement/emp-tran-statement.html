@@ -1,0 +1,164 @@
+<div class=" container-fluid my-4">
+  <div class="card shadow-lg border-0 rounded-3 w-100">
+    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+      <h4 class="mb-0">Transaction Statement</h4>
+      <i class="bi bi-receipt-cutoff fs-4"></i>
+    </div>
+
+    <div class="card-body">
+      <!-- Account ID input -->
+      <div class="account-search row g-2 mb-4">
+        <div class="col-auto">
+          <label for="accountId" class="form-label fw-bold">Enter Account ID:</label>
+        </div>
+        <div class="col-auto">
+          <input
+            type="number"
+            id="accountId"
+            class="form-control"
+            [(ngModel)]="accountId"
+            placeholder="Account ID"
+          />
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-success shadow-sm" (click)="loadTransactions()">
+            <i class="bi bi-search"></i> Search
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div *ngIf="loading" class="alert alert-info text-center">
+        <i class="bi bi-hourglass-split"></i> Loading transactions...
+      </div>
+
+      <!-- Error -->
+      <div *ngIf="errorMessage" class="alert alert-danger text-center">
+        <i class="bi bi-exclamation-triangle"></i> {{ errorMessage }}
+      </div>
+
+      <!-- Filter Section -->
+      <div
+        class="filter-section mt-4 p-3 border rounded shadow-sm bg-light"
+        *ngIf="transactions.length > 0"
+      >
+        <h5 class="mb-3 text-primary">
+          <i class="bi bi-funnel"></i> Filter Transactions
+        </h5>
+
+        <div class="row g-3">
+          <!-- Start Date -->
+          <div class="col-md-3">
+            <label class="form-label fw-bold">Start Date:</label>
+            <input type="date" class="form-control" [(ngModel)]="startDate" />
+          </div>
+
+          <!-- End Date -->
+          <div class="col-md-3">
+            <label class="form-label fw-bold">End Date:</label>
+            <input type="date" class="form-control" [(ngModel)]="endDate" />
+          </div>
+
+          <!-- Type -->
+          <div class="col-md-2">
+            <label class="form-label fw-bold">Type:</label>
+            <select class="form-select" [(ngModel)]="type" (change)="onTypeChange()">
+              <option value="">All</option>
+              <option value="DEBIT">Debit</option>
+              <option value="CREDIT">Credit</option>
+            </select>
+          </div>
+
+          <!-- Transaction Type -->
+          <div class="col-md-3">
+            <label class="form-label fw-bold">Transaction Type:</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="transactionType"
+              placeholder="e.g. TRANSFER"
+            />
+          </div>
+
+          <!-- Button -->
+          <div class="col-md-1 d-flex align-items-end">
+            <button
+              class="btn btn-success w-100 shadow-sm"
+              (click)="applyFilter()"
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PDF Export Button -->
+      <div class="mb-3 text-end" *ngIf="transactions.length > 0">
+        <button class="btn btn-danger shadow-sm" (click)="exportPDF()">
+          <i class="bi bi-file-earmark-pdf"></i> Save as PDF
+        </button>
+      </div>
+
+      <!-- Transactions Table -->
+      <div #transactionTable *ngIf="transactions.length > 0" class="table-responsive">
+        <table class="table table-hover table-bordered align-middle w-100">
+          <thead class="table-dark text-center">
+            <tr>
+              <th>Trans Date</th>
+              <th>Particulars</th>
+              <th>Instrument No</th>
+              <th>Receiver</th>
+              <th>Type</th>
+              <th>Transaction Type</th>
+              <th>Withdraw Amount</th>
+              <th>Deposit Amount</th>
+              <th>Balance</th>
+
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let tx of transactions">
+              <td>{{ tx.transactionTime | date: 'short' }}</td>
+              <td>{{ tx.description }}</td>
+              <td>{{ tx.id }}</td>
+              <td>{{ tx.receiverAccount?.name }}</td>
+              <td [ngClass]="{ 'text-danger fw-bold': tx.type === 'DEBIT', 'text-success fw-bold': tx.type === 'CREDIT' }">
+                {{ tx.type }}
+              </td>
+              <td>{{ tx.transactionType }}</td>
+
+              <!-- Withdraw Amount -->
+              <td>
+                <span *ngIf="tx.type === 'DEBIT'">{{ tx.amount | number:'1.2-2' }}</span>
+              </td>
+
+              <!-- Deposit Amount -->
+              <td>
+                <span *ngIf="tx.type === 'CREDIT'">{{ tx.amount | number:'1.2-2' }}</span>
+              </td>
+
+              <!-- Balance -->
+              <td>{{ tx.runningBalance | number:'1.2-2' }}</td>
+
+
+            </tr>
+
+            <!-- Totals Row -->
+            <tr class="table-secondary fw-bold text-end">
+              <td colspan="6">Totals</td>
+              <td>{{ totalWithdraw | number:'1.2-2' }}</td>
+              <td>{{ totalDeposit | number:'1.2-2' }}</td>
+              <td>{{ totalBalance | number:'1.2-2' }}</td>
+              <td colspan="2"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- No Transactions -->
+      <div *ngIf="transactions.length === 0 && !loading" class="alert alert-warning text-center">
+        <i class="bi bi-info-circle"></i> No transactions found.
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,226 @@
+/* ===== Base Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f7faff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('https://images.unsplash.com/photo-1592853625601-456bfaa9b5f5?auto=format&fit=crop&w=1600&q=80')
+      no-repeat center/cover;
+  color: white;
+  text-align: center;
+  padding: 130px 20px;
+  border-bottom-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+}
+
+.hero h2 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 25px;
+  color: #e8f7ff;
+}
+
+.hero button {
+  background: linear-gradient(90deg, #ffcc00, #ff8800);
+  border: none;
+  color: #000;
+  font-weight: 600;
+  padding: 12px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero button:hover {
+  background: linear-gradient(90deg, #ffaa00, #ff5500);
+  transform: translateY(-3px);
+}
+
+/* ===== Section Titles ===== */
+.section-title {
+  text-align: center;
+  margin: 70px 0 30px;
+  font-size: 32px;
+  color: #004aad;
+  position: relative;
+  font-weight: 700;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #004aad, #00bfff);
+  margin: 10px auto 0;
+  border-radius: 10px;
+}
+
+/* ===== Services ===== */
+.services {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  padding: 0 30px 60px;
+}
+
+.service-card {
+  background: white;
+  width: 300px;
+  text-align: center;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.service-card img {
+  width: 70px;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  color: #004aad;
+  margin-bottom: 10px;
+}
+
+/* ===== How It Works ===== */
+.how-it-works {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 0 20px 60px;
+}
+
+.step {
+  background: linear-gradient(135deg, #ffffff, #e7f3ff);
+  width: 280px;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+  background: linear-gradient(135deg, #dfefff, #f9fcff);
+}
+
+/* ===== Pricing ===== */
+.pricing {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  padding-bottom: 70px;
+}
+
+.plan {
+  background: white;
+  width: 270px;
+  text-align: center;
+  padding: 35px 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  border-top: 5px solid transparent;
+}
+
+.plan:hover {
+  transform: translateY(-8px);
+  border-top: 5px solid #004aad;
+}
+
+.plan h3 {
+  color: #004aad;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.plan p {
+  margin-bottom: 10px;
+}
+
+.plan button {
+  background: linear-gradient(90deg, #004aad, #00bfff);
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.plan button:hover {
+  background: linear-gradient(90deg, #007bff, #004aad);
+  transform: scale(1.05);
+}
+
+/* ===== Testimonials ===== */
+#testimonials {
+  background: linear-gradient(90deg, #e3f2fd, #f9f9ff);
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.testimonials {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.testimonial {
+  background: white;
+  padding: 25px;
+  max-width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-style: italic;
+  transition: transform 0.3s ease;
+}
+
+.testimonial:hover {
+  transform: translateY(-5px);
+}
+
+/* ===== About ===== */
+.about {
+  background: #fff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.about p {
+  max-width: 700px;
+  margin: auto;
+  font-size: 18px;
+  color: #444;
+}

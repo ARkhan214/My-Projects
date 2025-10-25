@@ -1,0 +1,96 @@
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-success text-white">
+      <h5 class="mb-0">Pay DPS Monthly</h5>
+    </div>
+    <div class="card-body">
+
+      <!-- DPS ID Input -->
+      <!-- <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">DPS ID:</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" [(ngModel)]="dpsId" name="dpsId"
+                 placeholder="Enter DPS ID" (ngModelChange)="fetchDpsDetails()" required>
+        </div>
+      </div> -->
+
+
+      <!--  DPS Dropdown -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label" style="font-size: 1.2rem; font-weight: 600;">
+          Select DPS:
+        </label>
+        <div class="col-sm-9">
+          <select class="form-select" [(ngModel)]="dpsId" (change)="fetchDpsDetails()" name="dpsId" required
+            style="font-size: 1.1rem; padding: 0.5rem;">
+            <option value="" disabled selected>-- Choose your DPS --</option>
+            <option *ngFor="let dps of allDpsList" [value]="dps.id">
+              DPS #{{ dps.id }} — {{ dps.status }} (৳{{ dps.monthlyAmount }})
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- DPS Details Form -->
+      <form *ngIf="dpsData">
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Account Name:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" [value]="dpsData.accountName" readonly>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Monthly Amount:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" [value]="dpsData.monthlyAmount" readonly>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Term (Months):</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" [value]="dpsData.termMonths" readonly>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Months Paid</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" [value]="dpsData.monthsPaid" readonly>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Status:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" [value]="dpsData.status" readonly>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Total Deposited:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" [value]="dpsData.totalDeposited" readonly>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Next Debit Date:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" [value]="dpsData.nextDebitDate | date:'mediumDate'" readonly>
+          </div>
+        </div>
+      </form>
+
+      <!-- Buttons -->
+      <div class="d-flex gap-2 mt-3">
+        <button class="btn btn-success" (click)="payDps()" [disabled]="!dpsData || loading">
+          {{ loading ? 'Processing...' : 'Pay Monthly' }}
+        </button>
+        <button class="btn btn-secondary ml-3" (click)="resetForm()">Reset</button>
+      </div>
+
+      <!-- Messages -->
+      <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+
+    </div>
+  </div>
+</div>

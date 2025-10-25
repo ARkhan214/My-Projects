@@ -1,0 +1,116 @@
+<p>employee-component works!</p>
+<div class="container mt-4">
+    <h2 class="text-primary mb-4">Employee Registration</h2>
+
+    <form [formGroup]="userEmployeeForm" (ngSubmit)="onSubmit()">
+
+        <!-- User Section -->
+        <h5 class="text-secondary mb-3">User Details</h5>
+        <div class="row g-3 mb-3">
+
+            <div class="col-md-6">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" id="name" formControlName="name" class="form-control"
+                    placeholder="Enter full name" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" formControlName="email" class="form-control" placeholder="Enter email" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" formControlName="password" class="form-control"
+                    placeholder="Enter password" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="phoneNumber" class="form-label">Phone Number</label>
+                <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control"
+                    placeholder="Enter phone number" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                <input type="date" id="dateOfBirth" formControlName="dateOfBirth" class="form-control" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="role" class="form-label">Role</label>
+                <select id="role" formControlName="role" class="form-select">
+                    <option value="">Select Role</option>
+                    <option [value]="Role.EMPLOYEE">Employee</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Upload Photo</label>
+                <input type="file" class="form-control" (change)="onFileSelected($event)" />
+            </div>
+        </div>
+
+        <hr />
+
+        <!-- Employee Section -->
+        <h5 class="text-secondary mb-3">Employee Details</h5>
+        <div class="row g-3 mb-3">
+
+            <div class="col-md-6">
+                <label for="status" class="form-label">Status</label>
+                <select id="status" formControlName="status" class="form-select">
+                    <option [value]="EmployeeStatus.ACTIVE">ACTIVE</option>
+                    <option [value]="EmployeeStatus.INACTIVE">INACTIVE</option>
+                    <option [value]="EmployeeStatus.SUSPENDED">SUSPENDED</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="nid" class="form-label">NID</label>
+                <input type="text" id="nid" formControlName="nid" class="form-control" placeholder="Enter NID" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" id="address" formControlName="address" class="form-control"
+                    placeholder="Enter address" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="position" class="form-label">Position</label>
+                <select id="position" formControlName="position" class="form-select">
+                    <option [value]="Position.MANAGER">MANAGER</option>
+                    <option [value]="Position.ACCOUNTANT">ACCOUNTANT</option>
+                    <option [value]="Position.CASHIER">CASHIER</option>
+                    <option [value]="Position.ASSISTANT_MANAGER">ASSISTANT MANAGER</option>
+                    <option [value]="Position.JUNIOR_OFFICER">JUNIOR_OFFICER</option>
+                    <option [value]="Position.SENIOR_OFFICER">SENIOR_OFFICER</option>
+                    <option [value]="Position.OFFICER">OFFICER</option>
+                    <option [value]="Position.TELLER">OFFICER</option>
+                    <option [value]="Position.INTERN">INTERN</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="salary" class="form-label">Salary</label>
+                <input type="number" id="salary" formControlName="salary" class="form-control"
+                    placeholder="Enter salary" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="dateOfJoining" class="form-label">Date of Joining</label>
+                <input type="date" id="dateOfJoining" formControlName="dateOfJoining" class="form-control" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="retirementDate" class="form-label">Retirement Date</label>
+                <!-- template -->
+                <input type="date" formControlName="retirementDate" class="form-control" readonly>
+
+
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+</div>

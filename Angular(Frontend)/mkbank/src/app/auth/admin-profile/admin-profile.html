@@ -1,0 +1,32 @@
+<p class="text-center text-primary fw-bold fs-4 mb-4"><h4 class="text-center">👤Admin Profile</h4>
+
+<div *ngIf="admin && admin.role === 'ADMIN'" class="container py-4">
+  <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+    <div class="row g-0">
+
+      <!-- Left side: Profile -->
+      <div class="col-md-4 bg-light d-flex flex-column align-items-center justify-content-center p-4">
+        <img [src]="'http://localhost:8085/images/user/' + admin.photo" 
+             alt="Profile Image" 
+             class="rounded-circle border border-3 border-primary shadow-sm mb-3"
+             style="height: 160px; width: 160px; object-fit: cover;">
+        <h4 class="fw-bold text-dark">{{ admin.name }}</h4>
+        <p class="text-muted mb-1">Admin ID: {{ admin.id }}</p>
+      </div>
+
+      <!-- Right side: Account Details -->
+      <div class="col-md-8 p-4">
+        <h5 class="fw-bold mb-3 border-bottom pb-2">📋 Account Information</h5>
+        <div class="row gy-3">      
+          <div class="col-sm-6"><strong>📞 Phone Number:</strong> {{ admin.phoneNumber }}</div>          
+          <div class="col-sm-6"><strong>🎂 Date Of Birth:</strong> {{ admin.dateOfBirth | date:'dd MMM yyyy' }}</div>
+        </div>
+      </div>
+
+      <div class="col-sm-4 text-center mt-2">
+        <button (click)="logout()" class="btn btn-danger mb-3">Logout</button>
+      </div>
+
+    </div>
+  </div>
+</div>

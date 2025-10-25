@@ -1,0 +1,88 @@
+<div class="container my-5">
+  <div class="transaction-container p-5 shadow-lg bg-light border-0 rounded-4" style="max-width:720px; margin:auto;">
+    <div class="card-body">
+
+      <!-- Title -->
+      <h2 class="card-title mb-4 text-center fw-bold" style="font-size:2rem; color:#1e3a8a; text-shadow:1px 1px 2px rgba(0,0,0,0.15);">
+        💳 Credit Card Payment
+      </h2>
+      <hr class="mb-4" style="border-color:#1e3a8a; opacity:0.3;">
+
+      <form [formGroup]="creditCardBillForm" (ngSubmit)="onSubmit()">
+
+        <!-- Bank / Company Name -->
+        <div class="mb-4">
+          <label for="companyName" class="form-label fw-semibold" style="color:#1e3a8a; font-size:1.2rem;">
+            Bank / Company Name
+          </label>
+          <select id="companyName" formControlName="companyName"
+                  class="form-select form-control-lg rounded-pill"
+                  style="font-size:1.15rem; padding:0.75rem 1rem; height:50px;">
+            <option value="" disabled selected>-- Select Bank --</option>
+            <option value="City Bank">City Bank</option>
+            <option value="Eastern Bank Limited (EBL)">Eastern Bank Limited (EBL)</option>
+            <option value="BRAC Bank">BRAC Bank</option>
+            <option value="Dutch-Bangla Bank">Dutch-Bangla Bank</option>
+            <option value="Standard Chartered Bank">Standard Chartered Bank</option>
+            <option value="Prime Bank">Prime Bank</option>
+            <option value="Mutual Trust Bank">Mutual Trust Bank</option>
+            <option value="SouthEast Bank">SouthEast Bank</option>
+            <option value="Islami Bank Bangladesh">Islami Bank Bangladesh</option>
+            <option value="One Bank">One Bank</option>
+            <option value="United Commercial Bank (UCB)">United Commercial Bank (UCB)</option>
+          </select>
+          <div class="text-danger mt-1 small"
+               *ngIf="creditCardBillForm.get('companyName')?.touched && creditCardBillForm.get('companyName')?.hasError('required')">
+            Company name is required.
+          </div>
+        </div>
+
+        <!-- Account / Credit Card Number -->
+        <div class="mb-4">
+          <label for="accountHolderBillingId" class="form-label fw-semibold" style="color:#1e3a8a; font-size:1.2rem;">
+            Account / Credit Card Number
+          </label>
+          <input id="accountHolderBillingId" type="text" formControlName="accountHolderBillingId"
+                 class="form-control form-control-lg rounded-pill"
+                 placeholder="Enter card number / billing ID" style="height:50px; padding:0.75rem 1rem; font-size:1.15rem;" />
+          <div class="text-danger mt-1 small"
+               *ngIf="creditCardBillForm.get('accountHolderBillingId')?.touched && creditCardBillForm.get('accountHolderBillingId')?.hasError('required')">
+            Credit card number is required.
+          </div>
+        </div>
+
+        <!-- Amount -->
+        <div class="mb-4">
+          <label for="amount" class="form-label fw-semibold" style="color:#1e3a8a; font-size:1.2rem;">
+            Amount
+          </label>
+          <input id="amount" type="number" formControlName="amount" min="1" step="0.01"
+                 class="form-control form-control-lg rounded-pill"
+                 placeholder="Enter amount" style="height:50px; padding:0.75rem 1rem; font-size:1.15rem;" />
+          <div class="text-danger mt-1 small" *ngIf="creditCardBillForm.get('amount')?.touched">
+            <span *ngIf="creditCardBillForm.get('amount')?.hasError('required')">Amount is required.</span>
+            <span *ngIf="creditCardBillForm.get('amount')?.hasError('min')">Amount must be at least 1.</span>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-between align-items-center mt-5">
+          <button type="submit" [disabled]="creditCardBillForm.invalid || !token"
+                  class="btn btn-primary btn-lg px-5 rounded-pill shadow-sm">
+            💳 Pay Bill
+          </button>
+          <button type="button" (click)="resetForm()"
+                  class="btn btn-outline-secondary btn-lg px-4 rounded-pill">
+            Reset
+          </button>
+        </div>
+
+        <!-- Not logged in note -->
+        <div class="alert alert-warning mt-4 mb-0 rounded-pill text-center py-2 small" *ngIf="!token">
+          ⚠️ You are not logged in. Please login to make a payment.
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
