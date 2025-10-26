@@ -14,13 +14,15 @@ import { Accountsservice } from '../../service/accountsservice';
   templateUrl: './addtransaction.html',
   styleUrl: './addtransaction.css'
 })
-export class Addtransaction implements OnInit{
+export class Addtransaction implements OnInit {
 
   transactionForm!: FormGroup;
   transactionType = TransactionType;
   token: string = '';
   receiverAccount?: Accounts;
   loadingReceiver: boolean = false;
+  loading: boolean = false;
+
 
   constructor(
     private fb: FormBuilder,
@@ -29,7 +31,7 @@ export class Addtransaction implements OnInit{
     private alertService: AlertService,
     private cdRef: ChangeDetectorRef,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     //Browser-only token fetch
@@ -96,6 +98,8 @@ export class Addtransaction implements OnInit{
       return;
     }
 
+    this.loading = true; //for loading
+
     const formValue = this.transactionForm.value;
 
     const transaction: Transaction = {
@@ -110,6 +114,7 @@ export class Addtransaction implements OnInit{
     if (formValue.type === this.transactionType.TRANSFER) {
       if (!formValue.receiverId) {
         this.alertService.warning('Receiver Account ID is required for Transfer!');
+        this.loading = false;  //for loading
         return;
       }
       transaction.receiverAccountId = formValue.receiverId;
@@ -118,10 +123,12 @@ export class Addtransaction implements OnInit{
         next: res => {
           this.alertService.success('Transfer Successful!');
           this.resetForm();
+          this.loading = false; // ✅ লোডিং বন্ধ
         },
         error: err => {
           console.error('Transfer failed:', err);
           this.alertService.error(err.error?.message || 'Transfer Failed!');
+          this.loading = false; // ✅ লোডিং বন্ধ
         }
       });
 
@@ -131,10 +138,12 @@ export class Addtransaction implements OnInit{
         next: res => {
           this.alertService.success('Transaction Successful!');
           this.resetForm();
+          this.loading = false; // ✅ লোডিং বন্ধ
         },
         error: err => {
           console.error('Transaction failed:', err);
           this.alertService.error(err.error?.message || 'Transaction Failed!');
+          this.loading = false; // ✅ লোডিং বন্ধ
         }
       });
     }

@@ -1,6 +1,6 @@
 <div class="transaction-container p-4 border rounded shadow-sm bg-white">
 
-  <h2 class="mb-4">New Transaction</h2>
+  <h2 class="mb-4">Transfer money</h2>
 
   <!-- Transaction Form -->
   <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
@@ -78,14 +78,29 @@
     </div>
 
     <!-- Submit & Reset Buttons -->
-    <div class="d-flex justify-content-between gap-2 mt-3">
+    <!-- <div class="d-flex justify-content-between gap-2 mt-3">
       <button type="submit" class="btn btn-primary w-50 mr-3" [disabled]="transactionForm.invalid">
         Submit Transaction
       </button>
       <button type="reset" class="btn btn-secondary w-50 ml-3" (click)="resetForm()">
         Reset
       </button>
+    </div> -->
+
+    <!-- Submit & Reset Buttons -->
+    <div class="d-flex justify-content-between gap-2 mt-3">
+      <button type="submit" class="btn btn-primary w-50 mr-3" [disabled]="transactionForm.invalid || loading">
+
+        <!-- ✅ Loading animation -->
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+        {{ loading ? 'Processing...' : 'Submit Transaction' }}
+      </button>
+
+      <button type="reset" class="btn btn-secondary w-50 ml-3" (click)="resetForm()" [disabled]="loading">
+        Reset
+      </button>
     </div>
+
 
   </form>
 </div>

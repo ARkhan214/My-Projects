@@ -11,11 +11,11 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrl: './dps-component.css'
 })
 export class DpsComponent {
-// === User Input ===
+  // === User Input ===
   monthlyAmount!: number;
   termMonths!: number;
 
-    // === Calculated preview ===
+  // === Calculated preview ===
   calculatedInterestRate: number = 0;
   estimatedMaturityAmount: number = 0;
 
@@ -87,6 +87,25 @@ export class DpsComponent {
 
 
   //  Preview Calculation
+  // calculatePreview() {
+  //   if (!this.termMonths || !this.monthlyAmount) {
+  //     this.calculatedInterestRate = 0;
+  //     this.estimatedMaturityAmount = 0;
+  //     return;
+  //   }
+
+  //   // Interest rate logic (match backend rules)
+  //   if (this.termMonths <= 6) this.calculatedInterestRate = 5;
+  //   else if (this.termMonths <= 12) this.calculatedInterestRate = 6;
+  //   else if (this.termMonths <= 24) this.calculatedInterestRate = 7;
+  //   else this.calculatedInterestRate = 8;
+
+  //   // Estimated maturity amount = total deposit + interest
+  //   this.estimatedMaturityAmount = this.monthlyAmount * this.termMonths * (1 + this.calculatedInterestRate / 100);
+  // }
+
+
+
   calculatePreview() {
     if (!this.termMonths || !this.monthlyAmount) {
       this.calculatedInterestRate = 0;
@@ -94,15 +113,20 @@ export class DpsComponent {
       return;
     }
 
-    // Interest rate logic (match backend rules)
-    if (this.termMonths <= 6) this.calculatedInterestRate = 5;
-    else if (this.termMonths <= 12) this.calculatedInterestRate = 6;
-    else if (this.termMonths <= 24) this.calculatedInterestRate = 7;
-    else this.calculatedInterestRate = 8;
+    // Match backend logic exactly
+    if (this.termMonths <= 6) {
+      this.calculatedInterestRate = 5.0;
+    } else if (this.termMonths <= 12) {
+      this.calculatedInterestRate = 8.5;
+    } else {
+      this.calculatedInterestRate = 10.0;
+    }
 
     // Estimated maturity amount = total deposit + interest
-    this.estimatedMaturityAmount = this.monthlyAmount * this.termMonths * (1 + this.calculatedInterestRate / 100);
+    const totalDeposit = this.monthlyAmount * this.termMonths;
+    this.estimatedMaturityAmount = totalDeposit * (1 + this.calculatedInterestRate / 100);
   }
+
 
 
 
@@ -138,9 +162,24 @@ export class DpsComponent {
           this.router.navigate(['/view-all-dps'])
           // this.loadMyDps(); // create হলে সাথে সাথে refresh হবে
         },
+        // error: (err: any) => {
+        //   console.error(err);
+        //   this.message = err.error || 'Error creating DPS';
+        //   this.alertService.error(this.message);
+        // }
+
         error: (err: any) => {
           console.error(err);
-          this.message = err.error || 'Error creating DPS';
+
+          // যদি backend থেকে message আসে, সেটাই দেখাও
+          if (err.error && err.error.message) {
+            this.message = err.error.message;
+          } else if (typeof err.error === 'string') {
+            this.message = err.error;
+          } else {
+            this.message = 'Error creating DPS';
+          }
+
           this.alertService.error(this.message);
         }
       });

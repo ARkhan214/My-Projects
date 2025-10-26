@@ -38,6 +38,11 @@ public class DpsService {
     @Transactional
     public Dps createDps(Dps dps, Long accountId) {
 
+        // ✅ DPS term limit (maximum 120 months)
+        if (dps.getTermMonths() > 120) {
+            throw new RuntimeException("DPS term cannot exceed 120 months.");
+        }
+
         Accounts account = accountRepository.findById(accountId)
                 .orElseThrow(() -> new RuntimeException("Account not found"));
 
